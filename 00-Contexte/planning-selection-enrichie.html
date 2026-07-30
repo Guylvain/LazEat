@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LazEat — Sélection enrichie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..800&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EEF0E8; --white:#FCFCF9; --moss:#33574A; --moss-deep:#244035;
+    --amber:#E2A33F; --sage:#7E8F84; --sage-dark:#5F6F65; --mist:#DBE0D5;
+    --r-pill:999px; --r-card:20px; --r-media:14px; --r-box:8px; --r-data:0;
+    --shadow:0 2px 12px rgba(36,64,53,.06);
+    --shadow-lift:0 4px 20px rgba(36,64,53,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--moss);font-family:'Figtree',system-ui,sans-serif;
+    line-height:1.5;font-feature-settings:'tnum' 1;padding-bottom:56px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px}
+
+  .ws{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:26px 0 4px}
+  .ws-d{cursor:pointer;text-align:center;padding:9px 0 8px;border-radius:var(--r-media);
+    background:var(--white);box-shadow:var(--shadow)}
+  .ws-d.sel{background:var(--moss)}
+  .ws-d .i{font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 24;
+    font-weight:600;font-size:15px;line-height:1;display:block}
+  .ws-d.sel .i{color:var(--white)}
+  .ws-d .c{display:flex;justify-content:center;gap:2.5px;margin-top:7px;height:5px}
+  .ws-d .c i{width:5px;height:5px;border-radius:50%;background:var(--mist)}
+  .ws-d .c i.on{background:var(--amber)}
+
+  .head{padding:30px 0 6px}
+  .head .n{font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 90;
+    font-weight:600;font-size:38px;line-height:1;letter-spacing:-.03em}
+  .head .s{font-size:14px;color:var(--sage-dark);margin-top:8px}
+  .prog{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;background:var(--white);color:var(--sage-dark);
+    padding:6px 13px;border-radius:var(--r-pill);margin-top:13px;box-shadow:var(--shadow)}
+  .prog b{color:var(--moss);font-size:13px}
+  .prog.done{background:rgba(226,163,63,.2);color:var(--moss-deep)}
+
+  .band{margin-top:32px}
+  .band > h2{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+    color:var(--sage);margin-bottom:14px;padding-left:2px}
+  .ev{display:grid;grid-template-columns:12px 96px 1fr;gap:12px;align-items:center;
+    padding:9px 2px;font-size:13.5px;color:var(--sage-dark)}
+  .ev i{width:9px;height:9px;border-radius:var(--r-data)}
+  .ev .t{font-weight:600;font-size:12.5px;white-space:nowrap}
+  .c-work{background:var(--sage)} .c-tele{background:var(--sage);opacity:.5}
+  .c-move{background:var(--mist)} .c-play{background:var(--moss-deep)}
+  .c-coach{background:var(--moss-deep);opacity:.55} .c-gym{background:var(--moss-deep);opacity:.75}
+
+  .meal{border-radius:var(--r-card);padding:16px 18px;margin:10px 0;display:grid;
+    grid-template-columns:12px 1fr;gap:14px;align-items:start;cursor:pointer;
+    background:var(--white);box-shadow:var(--shadow);border:none;width:100%;text-align:left;
+    font-family:inherit;color:inherit;transition:transform .12s ease}
+  .meal:active{transform:scale(.985)}
+  .meal > i{width:10px;height:10px;border-radius:50%;background:var(--amber);margin-top:6px;flex:none}
+  .meal .t{font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 24;
+    font-weight:600;font-size:14px;color:var(--sage-dark);display:block}
+  .meal .n{font-size:17px;font-weight:600;line-height:1.25;margin-top:3px;display:block}
+  .meal .d{font-size:13px;color:var(--sage-dark);line-height:1.4;margin-top:4px;display:block}
+  .meal .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .ch{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:var(--r-pill);
+    background:var(--cream);color:var(--sage-dark)}
+  .ch.time{background:var(--moss);color:var(--white)}
+  .ch.stock{background:rgba(226,163,63,.28);color:var(--moss-deep)}
+  .meal.vide{background:transparent;box-shadow:none;border:1.5px dashed var(--mist)}
+  .meal.vide > i{background:var(--mist)}
+  .meal.vide .n{color:var(--sage);font-weight:500}
+  .meal.vide .plus{display:inline-flex;align-items:center;gap:6px;margin-top:8px;
+    font-size:12.5px;font-weight:700;color:var(--moss)}
+  .meal.vide .plus b{width:19px;height:19px;border-radius:50%;background:var(--moss);color:var(--white);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .meal.pil{background:linear-gradient(130deg,rgba(226,163,63,.18),var(--white) 60%)}
+  .meal.vide.pil{background:linear-gradient(130deg,rgba(226,163,63,.1),transparent 60%);
+    border-color:rgba(226,163,63,.5)}
+  .meal.dehors{opacity:.82} .meal.dehors .n{color:var(--sage-dark);font-weight:500}
+  .meal.fait{opacity:.45} .meal.fait .n{text-decoration:line-through}
+
+  /* ── feuille ── */
+  .veil{position:fixed;inset:0;background:rgba(36,64,53,.42);opacity:0;pointer-events:none;
+    transition:opacity .22s ease;z-index:40;backdrop-filter:blur(2px)}
+  .veil.on{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--cream);
+    border-radius:28px 28px 0 0;padding:8px 18px 26px;max-height:88vh;overflow-y:auto;
+    transform:translateY(102%);transition:transform .28s cubic-bezier(.32,.72,0,1);
+    max-width:520px;margin:0 auto;box-shadow:0 -8px 40px rgba(36,64,53,.18)}
+  .sheet.on{transform:translateY(0)}
+  .grip{width:38px;height:4px;border-radius:var(--r-pill);background:var(--mist);margin:6px auto 16px}
+  .sheet h3{font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 50;
+    font-weight:600;font-size:24px;letter-spacing:-.02em;line-height:1.1}
+  .sheet .sub{font-size:13px;color:var(--sage-dark);margin-top:5px;margin-bottom:16px}
+  .lbl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+    color:var(--sage);margin:20px 0 10px}
+  .lbl:first-of-type{margin-top:0}
+
+  /* ── option enrichie ── */
+  .opt{background:var(--white);border-radius:var(--r-card);padding:13px;margin-bottom:9px;
+    cursor:pointer;box-shadow:var(--shadow);border:none;width:100%;text-align:left;
+    font-family:inherit;color:inherit;display:block;position:relative}
+  .opt.cur{outline:2px solid var(--moss)}
+  .opt-top{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:start}
+  .thumb{width:64px;height:64px;border-radius:var(--r-media);flex:none;position:relative;
+    overflow:hidden;display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 40;
+    font-weight:600;font-size:24px;color:rgba(252,252,249,.9)}
+  .thumb::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.28),transparent 62%)}
+  .opt .n{font-size:15.5px;font-weight:600;line-height:1.22}
+  .opt .ing{font-size:12px;color:var(--sage-dark);line-height:1.35;margin-top:3px}
+  .mark{width:24px;height:24px;border-radius:50%;border:2px solid var(--mist);flex:none;margin-top:2px}
+  .opt.cur .mark{background:var(--moss);border-color:var(--moss);position:relative}
+  .opt.cur .mark::after{content:"";position:absolute;left:7px;top:6px;width:8px;height:5px;
+    border-left:2.5px solid var(--white);border-bottom:2.5px solid var(--white);transform:rotate(-45deg)}
+  .opt .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .facts{margin-top:10px;padding-top:10px;border-top:1px solid var(--mist);
+    display:flex;flex-direction:column;gap:5px}
+  .fact{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--sage-dark);line-height:1.35}
+  .fact i{width:5px;height:5px;border-radius:50%;flex:none;background:var(--sage)}
+  .fact.good i{background:var(--moss)} .fact.good{color:var(--moss);font-weight:600}
+  .fact.warn i{background:var(--amber)} .fact.warn{color:var(--moss-deep)}
+  .badge{position:absolute;top:-7px;left:14px;font-size:9.5px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;background:var(--moss);color:var(--white);padding:3px 10px;
+    border-radius:var(--r-pill)}
+  .opt.stockopt{background:linear-gradient(130deg,rgba(226,163,63,.2),var(--white) 62%)}
+  .ghost{background:transparent;border:1.5px dashed var(--mist);box-shadow:none;
+    padding:15px 13px;text-align:center}
+  .ghost .n{color:var(--sage-dark);font-weight:500;font-size:14.5px}
+
+  .foot{margin-top:44px;padding-top:20px;border-top:1px solid var(--mist);
+    font-size:13px;color:var(--sage-dark)}
+  .foot b{color:var(--moss);font-weight:600}
+  .foot p+p{margin-top:11px}
+
+  @media(max-width:400px){
+    .wrap{padding:0 16px}.head .n{font-size:32px}
+    .ev{grid-template-columns:10px 88px 1fr;gap:10px}
+    .meal{padding:14px 15px;gap:12px}.meal .n{font-size:16px}
+    .opt-top{grid-template-columns:56px 1fr auto;gap:10px}
+    .thumb{width:56px;height:56px;font-size:21px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ws" id="ws"></div>
+  <div class="head" id="head"></div>
+  <div id="jour"></div>
+  <div class="foot">
+    <p><b>Chaque option porte cinq informations de décision</b> : la vignette, les ingrédients principaux en une ligne, le temps actif, l'état de ton stock, et ton historique avec la recette.</p>
+    <p><b>La ligne de stock est la plus utile.</b> « 5 ingrédients sur 6 — manque le thon » te dit immédiatement ce que ce choix ajoute à ta liste de courses. Une recette entièrement couverte est signalée en vert.</p>
+    <p><b>L'historique évite la lassitude.</b> « Cuisinée il y a 5 jours » te dissuade de reprendre la même chose, « jamais testée » t'encourage à élargir. Une fois notée, ta note apparaît.</p>
+    <p><b>La recharge express est un créneau comme les autres</b>, avec ses propres options — ce que tu mets dans ton sac se décide aussi.</p>
+  </div>
+</div>
+<div class="veil" id="veil"></div>
+<div class="sheet" id="sheet"></div>
+
+<script>
+const B=(s,e,t,l)=>({s,e,t,l,k:'ev'});
+const M=(s,slot,conseil,p,cr)=>({s,slot,conseil,p,cr,k:'meal',choix:null});
+
+/* recettes — données enrichies */
+const R={
+ gnocchis:{n:"Gnocchis poêlés crème lardons",t:10,port:2,r:"quotidien",j2:"à éviter",
+   ing:"Gnocchis frais, lardons, crème, petits pois, paprika",st:[6,6],last:5,note:null,c:"#33574A"},
+ poelee:{n:"Poêlée post-rugby express",t:10,port:2,r:"quotidien",j2:"correcte",
+   ing:"Riz cuit, œufs, thon, légumes surgelés, sauce soja",st:[5,6],manque:"le thon",last:12,note:4,c:"#5F6F65",tag:"oméga-3"},
+ coquillettes:{n:"Coquillettes crème lardons paprika",t:12,port:2,r:"quotidien",j2:"à éviter",
+   ing:"Coquillettes, lardons, crème, petits pois, parmesan",st:[6,6],last:2,note:5,c:"#7E8F84",tag:"folates"},
+ pates_thon:{n:"Pâtes thon tomate olives",t:12,port:2,r:"quotidien",j2:"correcte",
+   ing:"Pâtes, thon, tomates concassées, olives, roquette",st:[4,6],manque:"la roquette et les olives",last:null,note:null,c:"#244035",tag:"oméga-3"},
+ riz_saute:{n:"Riz sauté poulet légumes",t:12,port:2,r:"quotidien",j2:"correcte",
+   ing:"Riz cuit, poulet, poivron, petits pois, œufs",st:[5,7],manque:"le poulet",last:null,note:null,c:"#3F6152"},
+ tortilla:{n:"Tortilla pommes de terre lardons",t:12,port:2,r:"quotidien",j2:"excellente",
+   ing:"Pommes de terre, œufs, lardons, oignon",st:[4,4],last:null,note:null,c:"#5F6F65"},
+ salade_pc:{n:"Salade pois chiches feta",t:12,port:2,r:"quotidien",j2:"excellente",
+   ing:"Pois chiches, feta, concombre, tomates cerises, citron",st:[3,6],manque:"la feta et le concombre",last:null,note:null,c:"#7E8F84",tag:"folates"},
+ salade_cm:{n:"Salade concombre tomates mozza",t:10,port:2,r:"quotidien",j2:"correcte",
+   ing:"Concombre, tomates cerises, mozzarella, sauce blanche",st:[2,5],manque:"la mozzarella",last:8,note:4,c:"#33574A"},
+ wrap:{n:"Wrap poulet crudités",t:12,port:2,r:"quotidien",j2:"à éviter",
+   ing:"Tortillas, poulet, salade, tomates, yaourt grec",st:[3,6],manque:"les tortillas",last:null,note:null,c:"#244035"},
+ bol_asia:{n:"Bol asiatique poulet croustillant",t:25,port:2,r:"convivial",j2:"correcte",
+   ing:"Riz cuit, poulet, maïzena, concombre, sauce dynamite",st:[4,8],manque:"la maïzena",last:null,note:null,c:"#3F6152"},
+ panuozzo:{n:"Panuozzo poulet César",t:20,port:2,r:"convivial",j2:"à éviter",
+   ing:"Ciabatta, poulet, romaine, parmesan, sauce César",st:[3,6],manque:"le pain ciabatta",last:null,note:null,c:"#5F6F65"},
+ poulet_cr:{n:"Poulet croustillant et frites au four",t:25,port:2,r:"convivial",j2:"à éviter",
+   ing:"Poulet, chapelure, œufs, pommes de terre, paprika",st:[4,6],manque:"la chapelure",last:null,note:null,c:"#244035"},
+ faux_filet:{n:"Faux-filet et pommes grenailles",t:25,port:2,r:"soigné",j2:"à éviter",
+   ing:"Faux-filet, grenailles, ail, thym, beurre demi-sel",st:[3,5],manque:"la viande",last:21,note:5,c:"#33574A"},
+ kebab:{n:"Assiette kebab maison",t:25,port:2,r:"convivial",j2:"correcte",
+   ing:"Poulet mariné au yaourt, frites au four, sauce blanche",st:[5,8],manque:"le poulet",last:null,note:null,c:"#3F6152"},
+ sardines:{n:"Sardines et pommes de terre sautées",t:20,port:2,r:"quotidien",j2:"correcte",
+   ing:"Sardines, pommes de terre, fromage blanc, échalote",st:[3,5],manque:"les sardines",last:null,note:null,c:"#5F6F65",tag:"oméga-3"},
+ curry:{n:"Curry de pois chiches au lait de coco",t:20,port:4,r:"quotidien",j2:"excellente",
+   ing:"Pois chiches, lait de coco, tomates, oignon, curry",st:[6,7],manque:"le gingembre",last:7,note:5,c:"#33574A",tag:"folates",batch:1},
+ chili:{n:"Chili con carne",t:20,port:4,r:"convivial",j2:"excellente",
+   ing:"Bœuf haché, haricots rouges, tomates, poivron, cumin",st:[4,7],manque:"le bœuf haché",last:null,note:null,c:"#244035",tag:"folates",batch:1},
+ dhal:{n:"Dhal de lentilles corail",t:15,port:4,r:"quotidien",j2:"excellente",
+   ing:"Lentilles corail, lait de coco, tomates, curry, citron",st:[5,6],manque:"les lentilles corail",last:null,note:null,c:"#3F6152",tag:"folates",batch:1},
+ pizza:{n:"Pâte à pizza maison — 4 pâtons",t:22,port:4,r:"convivial",j2:"excellente",
+   ing:"Farine T65, eau, levure, sel, huile d'olive",st:[3,5],manque:"la levure",last:null,note:null,c:"#5F6F65",batch:1},
+ bol_yaourt:{n:"Bol yaourt banane noix",t:2,port:1,r:"quotidien",j2:"à éviter",
+   ing:"Yaourt grec, banane, noix, flocons d'avoine",st:[4,4],last:1,note:4,c:"#7E8F84",tag:"oméga-3"},
+ porridge:{n:"Porridge avoine banane",t:5,port:1,r:"quotidien",j2:"correcte",
+   ing:"Flocons d'avoine, lait, banane, cannelle",st:[4,4],last:null,note:null,c:"#5F6F65"},
+ tartines:{n:"Tartines de collation pour le trajet",t:5,port:1,r:"quotidien",j2:"à éviter",
+   ing:"Pain complet, jambon, comté, beurre, banane",st:[4,5],manque:"le comté",last:3,note:4,c:"#33574A"},
+ /* recharge express */
+ rech_abricots:{n:"Abricots secs + compote à boire",t:0,port:1,r:"quotidien",j2:"—",
+   ing:"Se garde en permanence dans le sac de sport",st:[2,2],last:3,note:4,c:"#E2A33F"},
+ rech_dattes:{n:"Dattes + amandes",t:0,port:1,r:"quotidien",j2:"—",
+   ing:"Plus dense en énergie, à mâcher tranquillement",st:[1,2],manque:"les dattes",last:null,note:null,c:"#C99235"},
+ rech_barre:{n:"Barre de céréales + banane",t:0,port:1,r:"quotidien",j2:"—",
+   ing:"Choisir une barre avec des flocons en 1er ingrédient",st:[2,2],last:14,note:3,c:"#7E8F84"},
+ rech_boisson:{n:"Boisson de récupération",t:2,port:1,r:"quotidien",j2:"—",
+   ing:"Lait + banane + miel mixés, à emporter en gourde",st:[2,3],manque:"le lait",last:null,note:null,c:"#5F6F65"},
+};
+const PROPOS={
+ "post-entrainement":["gnocchis","poelee","coquillettes","pates_thon","riz_saute"],
+ "dejeuner":["salade_pc","tortilla","salade_cm","wrap","bol_asia"],
+ "petit-dej":["bol_yaourt","porridge"],
+ "collation":["tartines","bol_yaourt","wrap"],
+ "soir-cuisine":["poulet_cr","faux_filet","kebab","sardines","panuozzo"],
+ "batch":["curry","chili","dhal","pizza"],
+ "avant-match":["porridge","pates_thon"],
+ "recharge":["rech_abricots","rech_dattes","rech_barre","rech_boisson"]
+};
+const STOCK=[
+ {id:"st1",n:"Curry de pois chiches",port:2,dlc:"vendredi",j:3,slots:["dejeuner","post-entrainement","soir-cuisine"]},
+ {id:"st2",n:"Chili con carne",port:1,dlc:"jeudi",j:2,slots:["dejeuner","post-entrainement","soir-cuisine"]}
+];
+
+const J=[
+ {a:"L",f:"Lundi",n:"Entreprise · entraînement 20h",
+  items:[M(7.5,"Petit-déj","Rapide, avalé debout",0,"petit-dej"),
+   B(8.5,9.5,'move','Trajet'),B(9.5,17.5,'work','Entreprise'),
+   M(12.5,"Déjeuner","Un vrai plat chaud, pas un sandwich",1,"dejeuner"),
+   B(17.5,18.5,'move','Trajet'),
+   M(18.75,"Collation avant rugby","Ton carburant de séance",1,"collation"),
+   B(20,22,'play','Entraînement'),B(22,22.5,'move','Retour'),
+   M(22.5,"Repas post-entraînement","Réchauffage, 12 min max",0,"post-entrainement")]},
+ {a:"M",f:"Mardi",n:"Cadets 19h · ta séance 20h30",
+  items:[M(7.5,"Petit-déj","Le sauter, c'est finir la séance à plat",0,"petit-dej"),
+   B(8.5,9.5,'move','Trajet'),B(9.5,17.5,'work','Entreprise'),
+   M(12.5,"Déjeuner","Le plus gros repas de ta semaine",1,"dejeuner"),
+   B(17.5,18.5,'move','Trajet'),
+   M(17.5,"Collation dans le trajet","Préparée le matin, mangée debout",1,"collation"),
+   B(19,20.5,'coach','Encadrement cadets'),
+   M(20.25,"Recharge express","Entre l'encadrement et ta séance",1,"recharge"),
+   B(20.5,22,'play','Entraînement'),B(22,22.5,'move','Retour'),
+   M(22.5,"Repas post-entraînement","12 min max, tu rentres à 22h30",0,"post-entrainement")]},
+ {a:"M",f:"Mercredi",n:"Salle 7h – 9h30 · télétravail",
+  items:[M(6.75,"Avant la salle","Court et sucré, deux minutes",1,"recharge"),
+   B(6.9,7.4,'move','Trajet'),B(7.4,9.5,'gym','Salle de sport'),B(9.5,9.9,'move','Retour'),
+   M(9.9,"Petit-déj complet","Tu es chez toi, prends le temps",1,"petit-dej"),
+   B(10,18,'tele','Télétravail'),
+   M(13,"Déjeuner cuisiné","Meilleur créneau de cuisine en journée",1,"dejeuner"),
+   M(19,"Batch cooking","3 à 4 portions pour la semaine",1,"batch")]},
+ {a:"J",f:"Jeudi",n:"Cadets 19h · retour vers 21h",
+  items:[M(7.5,"Petit-déj","Rapide",0,"petit-dej"),
+   B(8.5,9.5,'move','Trajet'),B(9.5,17.5,'work','Entreprise'),
+   M(12.5,"Déjeuner","Gamelle ou cantine",1,"dejeuner"),
+   B(17.5,18.5,'move','Trajet'),
+   M(17.75,"Collation légère","Tu encadres, tu ne joues pas",0,"collation"),
+   B(19,20.5,'coach','Encadrement cadets'),B(20.5,21,'move','Retour'),
+   M(21.25,"Soir cuisine","20-30 min · double les quantités",1,"soir-cuisine")]},
+ {a:"V",f:"Vendredi",n:"Salle le matin · rugby le soir",
+  items:[M(6.75,"Avant la salle","Deux minutes",1,"recharge"),
+   B(6.9,7.4,'move','Trajet'),B(7.4,9.5,'gym','Salle de sport'),B(9.5,9.9,'move','Retour'),
+   M(9.9,"Petit-déj complet","Journée la plus exigeante de la semaine",1,"petit-dej"),
+   B(10,18,'tele','Télétravail'),
+   M(13,"Déjeuner cuisiné","Charge en glucides",1,"dejeuner"),
+   M(18.5,"Collation avant rugby","Et sors ton plat du frigo",1,"collation"),
+   B(20,22,'play','Entraînement'),B(22,22.5,'move','Retour'),
+   M(22.5,"Repas post-entraînement","Réchauffage",0,"post-entrainement")]},
+ {a:"S",f:"Samedi",n:"Journée libre",
+  items:[M(10,"Petit-déj tranquille","Le seul où tu peux t'asseoir",0,"petit-dej"),
+   M(13,"Déjeuner","Ce que tu veux",0,"dejeuner"),
+   M(20,"Dîner libre","C'est prévu au programme",0,"soir-cuisine")]},
+ {a:"D",f:"Dimanche",n:"Match 13h – 19h",
+  items:[M(8.5,"Petit-déj","Complet",0,"petit-dej"),
+   M(11,"Repas d'avant-match","Deux heures avant le coup d'envoi",1,"avant-match"),
+   B(12.5,13,'move','Trajet'),B(13,19,'play','Match'),
+   M(16,"Collation dans le sac","Pendant les six heures au club",0,"recharge"),
+   B(19,19.5,'move','Retour'),
+   M(19.5,"Batch au retour","Protéines dans l'heure",1,"post-entrainement")]}
+];
+
+J[1].items.find(x=>x.s===7.5).choix={k:'r',id:'bol_yaourt'};
+J[1].items.find(x=>x.s===12.5).choix={k:'st',id:'st1'};
+J[0].items.find(x=>x.s===22.5).choix={k:'r',id:'gnocchis',fait:1};
+J[5].items.find(x=>x.s===20).choix={k:'dehors'};
+
+const fmt=h=>{const H=Math.floor(h),m=Math.round((h-H)*60);return m?H+"h"+String(m).padStart(2,"0"):H+"h";};
+const BANDS=[["Matin",0,12],["Après-midi",12,18],["Soir",18,24]];
+let sel=1,cible=null;
+
+function ws(){
+  document.getElementById('ws').innerHTML=J.map((j,i)=>{
+    const ms=j.items.filter(x=>x.k==='meal');
+    return `<div class="ws-d ${i===sel?'sel':''}" data-i="${i}"><span class="i">${j.a}</span>
+      <span class="c">${ms.map(m=>`<i class="${m.choix?'on':''}"></i>`).join('')}</span></div>`;
+  }).join('');
+  document.querySelectorAll('.ws-d').forEach(e=>e.onclick=()=>{sel=+e.dataset.i;render();});
+}
+
+function carte(m,idx){
+  const c=m.choix;
+  if(!c) return `<button class="meal vide ${m.p?'pil':''}" data-m="${idx}"><i></i>
+    <span><span class="t">${fmt(m.s)}</span><span class="n">${m.slot}</span>
+    <span class="d">${m.conseil}</span>
+    <span class="plus"><b>+</b>Choisir un repas</span></span></button>`;
+  if(c.k==='dehors') return `<button class="meal dehors" data-m="${idx}"><i></i>
+    <span><span class="t">${fmt(m.s)}</span><span class="n">Mange dehors</span></span></button>`;
+  if(c.k==='st'){const s=STOCK.find(x=>x.id===c.id);
+    return `<button class="meal ${m.p?'pil':''}" data-m="${idx}"><i></i>
+      <span><span class="t">${fmt(m.s)}</span><span class="n">${s.n}</span>
+      <span class="chips"><span class="ch stock">au frigo</span>
+      <span class="ch">${s.port} portion${s.port>1?'s':''}</span>
+      <span class="ch">avant ${s.dlc}</span></span></span></button>`;}
+  const r=R[c.id];
+  return `<button class="meal ${m.p?'pil':''} ${c.fait?'fait':''}" data-m="${idx}"><i></i>
+    <span><span class="t">${fmt(m.s)}</span><span class="n">${r.n}</span>
+    <span class="chips">${c.fait?'<span class="ch">fait</span>':
+      (r.t>0?`<span class="ch time">${r.t} min</span>`:'<span class="ch">rien à préparer</span>')}
+    <span class="ch">${r.port} portion${r.port>1?'s':''}</span>
+    ${r.batch?'<span class="ch">batch</span>':''}</span></span></button>`;
+}
+
+function render(){
+  ws();
+  const j=J[sel], ms=j.items.filter(x=>x.k==='meal'), done=ms.filter(x=>x.choix).length;
+  document.getElementById('head').innerHTML=
+    `<div class="n">${j.f}</div><div class="s">${j.n}</div>
+     <span class="prog ${done===ms.length?'done':''}"><b>${done}/${ms.length}</b> repas planifiés</span>`;
+  const sorted=j.items.map((x,i)=>({...x,idx:i})).sort((a,b)=>a.s-b.s||(a.k==='meal'?-1:1));
+  let html='';
+  BANDS.forEach(([nom,a,b])=>{
+    const list=sorted.filter(x=>x.s>=a&&x.s<b); if(!list.length) return;
+    html+=`<div class="band"><h2>${nom}</h2>`;
+    list.forEach(x=>{html+= x.k==='ev'
+      ? `<div class="ev"><i class="c-${x.t}"></i><span class="t">${fmt(x.s)} – ${fmt(x.e)}</span><span>${x.l}</span></div>`
+      : carte(x,x.idx);});
+    html+='</div>';
+  });
+  document.getElementById('jour').innerHTML=html;
+  document.querySelectorAll('[data-m]').forEach(e=>e.onclick=()=>ouvrir(+e.dataset.m));
+}
+
+function optRecette(id,cur,premier){
+  const r=R[id], man=r.manque;
+  const complet=r.st[0]===r.st[1];
+  let facts='';
+  facts+=`<div class="fact ${complet?'good':''}"><i></i>${complet
+    ? "Tu as tous les ingrédients"
+    : `${r.st[0]} ingrédients sur ${r.st[1]} — il manque ${man}`}</div>`;
+  if(r.last===null) facts+=`<div class="fact"><i></i>Jamais testée</div>`;
+  else if(r.last<=7) facts+=`<div class="fact warn"><i></i>Cuisinée il y a ${r.last} jour${r.last>1?'s':''}${r.note?` · tu as mis ${r.note}/5`:''}</div>`;
+  else facts+=`<div class="fact"><i></i>Cuisinée il y a ${r.last} jours${r.note?` · tu as mis ${r.note}/5`:''}</div>`;
+  if(r.j2!=="—") facts+=`<div class="fact"><i></i>Tenue au lendemain : ${r.j2}</div>`;
+
+  return `<button class="opt ${cur?'cur':''}" data-pick="r:${id}">
+    ${premier?'<span class="badge">Suggéré</span>':''}
+    <div class="opt-top">
+      <div class="thumb" style="background:${r.c}">${r.n[0]}</div>
+      <div><div class="n">${r.n}</div><div class="ing">${r.ing}</div>
+        <div class="chips">
+          ${r.t>0?`<span class="ch time">${r.t} min</span>`:'<span class="ch">aucune prépa</span>'}
+          <span class="ch">${r.port} portion${r.port>1?'s':''}</span>
+          <span class="ch">${r.r}</span>
+          ${r.tag?`<span class="ch stock">${r.tag}</span>`:''}
+        </div></div>
+      <div class="mark"></div>
+    </div>
+    <div class="facts">${facts}</div></button>`;
+}
+
+function ouvrir(idx){
+  const m=J[sel].items[idx]; cible=idx;
+  const cur=m.choix;
+  const stocks=STOCK.filter(s=>m.cr&&s.slots.includes(m.cr));
+  const recs=PROPOS[m.cr]||[];
+
+  let h=`<div class="grip"></div><h3>${m.slot}</h3>
+    <p class="sub">${fmt(m.s)} · ${m.conseil}</p>`;
+
+  if(stocks.length){
+    h+='<p class="lbl">Déjà prêt au frigo</p>';
+    stocks.forEach(s=>{
+      const c=cur&&cur.k==='st'&&cur.id===s.id;
+      h+=`<button class="opt stockopt ${c?'cur':''}" data-pick="st:${s.id}">
+        <div class="opt-top">
+          <div class="thumb" style="background:var(--amber)">${s.n[0]}</div>
+          <div><div class="n">${s.n}</div>
+            <div class="ing">Cuisiné il y a ${s.j} jours, prêt à réchauffer</div>
+            <div class="chips"><span class="ch stock">${s.port} portion${s.port>1?'s':''}</span>
+            <span class="ch">4 min au micro-ondes</span></div></div>
+          <div class="mark"></div></div>
+        <div class="facts">
+          <div class="fact good"><i></i>Rien à acheter, rien à cuisiner</div>
+          <div class="fact warn"><i></i>À manger avant ${s.dlc}</div>
+        </div></button>`;
+    });
+  }
+  if(recs.length){
+    h+='<p class="lbl">À cuisiner</p>';
+    recs.forEach((id,i)=>h+=optRecette(id,cur&&cur.k==='r'&&cur.id===id,i===0&&!stocks.length));
+  }
+  h+='<p class="lbl">Autre</p>';
+  h+=`<button class="opt ghost ${cur&&cur.k==='dehors'?'cur':''}" data-pick="dehors">
+      <span class="n">Mange dehors — aucun ingrédient aux courses</span></button>`;
+  if(cur) h+=`<button class="opt ghost" data-pick="clear"><span class="n">Vider ce créneau</span></button>`;
+
+  document.getElementById('sheet').innerHTML=h;
+  document.getElementById('sheet').scrollTop=0;
+  document.getElementById('sheet').classList.add('on');
+  document.getElementById('veil').classList.add('on');
+  document.querySelectorAll('[data-pick]').forEach(e=>e.onclick=()=>choisir(e.dataset.pick));
+}
+function fermer(){document.getElementById('sheet').classList.remove('on');
+  document.getElementById('veil').classList.remove('on');}
+function choisir(v){
+  const m=J[sel].items[cible];
+  if(v==='clear') m.choix=null;
+  else if(v==='dehors') m.choix={k:'dehors'};
+  else {const [k,id]=v.split(':'); m.choix={k,id};}
+  fermer(); render();
+}
+document.getElementById('veil').onclick=fermer;
+render();
+</script>
+</body>
+</html>

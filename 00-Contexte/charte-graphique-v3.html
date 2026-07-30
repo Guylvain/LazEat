@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LazEat — Charte graphique v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..800&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* couleur */
+    --cream:#EEF0E8;
+    --moss:#33574A;
+    --moss-deep:#244035;
+    --amber:#E2A33F;
+    --sage:#7E8F84;
+    --sage-dark:#5F6F65;
+    --mist:#DBE0D5;
+    --white:#FCFCF9;
+
+    /* type */
+    --t-display-xl:clamp(38px,11vw,64px);
+    --t-display-l:clamp(26px,6.5vw,36px);
+    --t-display-m:23px;
+    --t-body-xl:20px;
+    --t-body-l:17px;
+    --t-body:15px;
+    --t-small:13px;
+    --t-micro:11px;
+
+    /* espace */
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+    --s5:24px; --s6:32px; --s7:48px; --s8:64px;
+
+    /* rayon — TOUCHE */
+    --r-pill:999px;
+    --r-panel:28px;
+    --r-card:20px;
+    --r-media:14px;
+    --r-box:8px;
+    /* rayon — MESURE */
+    --r-data:0;
+
+    --shadow:0 2px 10px rgba(36,64,53,.07);
+    --shadow-lift:0 4px 18px rgba(36,64,53,.11);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--cream);color:var(--moss);
+    font-family:'Figtree',system-ui,sans-serif;
+    font-weight:400;line-height:1.6;
+    font-feature-settings:'tnum' 1;
+    padding-bottom:var(--s8);-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 var(--s4)}
+
+  .fr{font-family:'Fraunces',Georgia,serif;
+      font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 40;
+      font-weight:600;letter-spacing:-.015em;line-height:1.05}
+
+  header.top{padding:var(--s7) 0 var(--s5);border-bottom:1px solid var(--mist)}
+  .eyebrow{font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;
+    font-weight:600;color:var(--sage-dark);margin-bottom:var(--s3)}
+  h1{font-family:'Fraunces',Georgia,serif;
+     font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 120;
+     font-weight:600;font-size:var(--t-display-xl);line-height:.95;letter-spacing:-.025em}
+  h1 em{font-style:normal;display:block;color:var(--amber)}
+  .lede{margin-top:var(--s4);max-width:54ch;color:var(--sage-dark);font-size:var(--t-body-l)}
+
+  section{padding:var(--s7) 0 0}
+  h2{font-family:'Fraunces',Georgia,serif;
+     font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 40;
+     font-weight:600;font-size:var(--t-display-m);letter-spacing:-.015em;margin-bottom:var(--s5)}
+  h3{font-size:var(--t-small);letter-spacing:.09em;text-transform:uppercase;
+    font-weight:600;color:var(--sage-dark);margin:var(--s5) 0 var(--s3)}
+  p.note{color:var(--sage-dark);font-size:var(--t-body);max-width:58ch;margin-top:var(--s4)}
+  p.note b{color:var(--moss);font-weight:600}
+  p.note+p.note{margin-top:var(--s3)}
+
+  /* palette */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:var(--s3)}
+  .sw{border-radius:var(--r-media);overflow:hidden;background:var(--white);box-shadow:var(--shadow)}
+  .sw .chip{height:70px;display:flex;align-items:flex-end;padding:var(--s3)}
+  .sw .chip b{font-size:var(--t-micro);letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .sw .meta{padding:var(--s3);font-size:var(--t-micro);line-height:1.5}
+  .sw .meta code{font-weight:700}
+  .sw .meta span{display:block;color:var(--sage-dark);margin-top:3px}
+  .ratio{display:inline-block;margin-top:var(--s2);padding:2px 8px;font-weight:700;
+    font-size:10px;border-radius:var(--r-pill)}
+  .ok{background:var(--moss);color:var(--white)}
+  .bad{background:var(--mist);color:var(--sage-dark)}
+
+  /* type */
+  .type-row{border-top:1px solid var(--mist);padding:var(--s4) 0;
+    display:grid;grid-template-columns:100px 1fr;gap:var(--s4);align-items:baseline}
+  .type-row .lbl{font-size:var(--t-micro);letter-spacing:.07em;text-transform:uppercase;
+    color:var(--sage-dark);font-weight:600;line-height:1.5}
+
+  /* règle des rayons */
+  .radius-demo{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s4)}
+  .rd{background:var(--white);border-radius:var(--r-card);padding:var(--s4);box-shadow:var(--shadow)}
+  .rd h4{font-size:var(--t-small);letter-spacing:.08em;text-transform:uppercase;
+    font-weight:700;margin-bottom:var(--s3)}
+  .rd .items{display:flex;gap:var(--s2);align-items:center;flex-wrap:wrap}
+  .demo-pill{background:var(--moss);color:var(--white);font-size:12px;font-weight:600;
+    padding:8px 16px;border-radius:var(--r-pill)}
+  .demo-box{width:26px;height:26px;border:2px solid var(--sage);border-radius:var(--r-box)}
+  .demo-media{width:44px;height:44px;background:var(--mist);border-radius:var(--r-media)}
+  .demo-bar{width:22px;height:52px;background:var(--moss);border-radius:var(--r-data)}
+  .demo-bar.s{height:16px}
+  .demo-bar.m{height:34px;background:var(--sage)}
+  .rd p{font-size:12.5px;color:var(--sage-dark);margin-top:var(--s3);line-height:1.5}
+  @media(max-width:560px){.radius-demo{grid-template-columns:1fr}}
+
+  /* boutons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;
+    font-family:'Figtree',sans-serif;font-weight:600;font-size:var(--t-body-l);
+    padding:15px var(--s6);border:none;border-radius:var(--r-pill);
+    background:var(--moss);color:var(--white);cursor:pointer;min-height:54px;
+    box-shadow:var(--shadow);transition:transform .12s ease,box-shadow .12s ease}
+  .btn:hover{box-shadow:var(--shadow-lift);transform:translateY(-1px)}
+  .btn.sec{background:transparent;color:var(--moss);border:1.5px solid var(--mist);box-shadow:none}
+  .btn.press{background:var(--amber);color:var(--moss-deep);transform:translateY(1px);box-shadow:none}
+  .btn.dis{background:var(--mist);color:var(--sage);box-shadow:none;cursor:not-allowed}
+  .btn.focus{outline:3px solid var(--amber);outline-offset:3px}
+  .btnrow{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+
+  /* carte */
+  .card{border-radius:var(--r-card);background:var(--white);display:flex;gap:var(--s4);
+    padding:var(--s3);align-items:center;max-width:430px;box-shadow:var(--shadow)}
+  .card .ph{width:80px;height:80px;flex:none;background:var(--mist);
+    border-radius:var(--r-media);position:relative;overflow:hidden}
+  .card .ph::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.6),transparent 60%)}
+  .card h4{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 30;
+    font-weight:600;font-size:var(--t-body-xl);line-height:1.15;letter-spacing:-.01em}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--s2)}
+  .chip-m{font-size:var(--t-micro);font-weight:600;color:var(--sage-dark);
+    background:var(--cream);padding:4px 10px;border-radius:var(--r-pill)}
+  .chip-m.time{background:var(--moss);color:var(--white)}
+  .chip-m.compo{background:transparent;color:var(--moss);border:1.5px dashed var(--sage)}
+
+  /* checklist */
+  .check{display:flex;align-items:center;gap:var(--s3);padding:14px var(--s4);
+    min-height:58px;max-width:430px;background:var(--white);border-radius:var(--r-media);
+    margin-bottom:var(--s2);box-shadow:var(--shadow)}
+  .box{width:26px;height:26px;border:2px solid var(--sage);border-radius:var(--r-box);
+    flex:none;display:flex;align-items:center;justify-content:center}
+  .box.on{background:var(--moss);border-color:var(--moss)}
+  .box.on::after{content:"";width:11px;height:6px;border-left:2.5px solid var(--white);
+    border-bottom:2.5px solid var(--white);transform:rotate(-45deg) translate(1px,-2px)}
+  .check.done span{color:var(--sage);text-decoration:line-through}
+
+  /* ───── PLANNING COLONNES ───── */
+
+
+
+  /* mode cuisine */
+  .kitchen{background:var(--moss-deep);color:var(--white);padding:var(--s6) var(--s5);
+    max-width:390px;border-radius:var(--r-panel);box-shadow:var(--shadow-lift)}
+  .kitchen .step{font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--amber);font-weight:700}
+  .kitchen h4{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 60;
+    font-weight:600;font-size:36px;line-height:1.05;letter-spacing:-.02em;margin:var(--s3) 0 var(--s4)}
+  .kitchen p{font-size:var(--t-body-xl);line-height:1.5;opacity:.94}
+  .kitchen p b{color:var(--amber);font-weight:700}
+  .timer{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 0,'opsz' 144;
+    font-weight:600;font-size:62px;line-height:1;margin:var(--s5) 0 var(--s3);letter-spacing:-.02em}
+  .tbar{height:6px;background:rgba(252,252,249,.2);border-radius:var(--r-data);margin-bottom:var(--s6)}
+  .tbar i{display:block;height:100%;width:38%;background:var(--amber);border-radius:var(--r-data)}
+  .kbtn{display:flex;gap:var(--s3)}
+  .kbtn button{flex:1;min-height:62px;font-family:'Figtree',sans-serif;font-weight:600;
+    font-size:var(--t-body-l);border-radius:var(--r-pill);
+    border:1.5px solid rgba(252,252,249,.35);background:transparent;color:var(--white);cursor:pointer}
+  .kbtn button.main{background:var(--amber);border-color:var(--amber);color:var(--moss-deep);flex:1.6}
+  .prog{display:flex;gap:4px;margin-bottom:var(--s4)}
+  .prog i{height:4px;flex:1;background:rgba(252,252,249,.22);border-radius:var(--r-data)}
+  .prog i.on{background:var(--amber)}
+
+  ul.rules{list-style:none;margin-top:var(--s3)}
+  ul.rules li{padding:var(--s3) 0;border-top:1px solid var(--mist);
+    display:grid;grid-template-columns:26px 1fr;gap:var(--s3);font-size:var(--t-body)}
+  ul.rules li>b{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1;font-weight:600;
+    font-size:var(--t-body-l);line-height:1.3;color:var(--amber)}
+  ul.rules li span b{font-weight:600;color:var(--moss)}
+  .no li>b{color:var(--sage)}
+.hdr .abbr{display:none}}
+  @media(max-width:520px){.type-row{grid-template-columns:1fr;gap:var(--s2)}}
+  /* ── planning aéré ── */
+  .ws-demo{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:var(--s3)}
+  .ws-d{text-align:center;padding:9px 0 8px;border-radius:var(--r-media);
+    background:var(--white);box-shadow:var(--shadow)}
+  .ws-d.sel{background:var(--moss)}
+  .ws-d .i{font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 24;
+    font-weight:600;font-size:15px;line-height:1;display:block}
+  .ws-d.sel .i{color:var(--white)}
+  .ws-d .c{display:flex;justify-content:center;gap:2.5px;margin-top:7px;height:5px}
+  .ws-d .c i{width:5px;height:5px;border-radius:50%;background:var(--mist)}
+  .ws-d .c i.on{background:var(--amber)}
+  .ws-d.sel .c i{background:rgba(252,252,249,.3)}
+  .ws-d.sel .c i.on{background:var(--amber)}
+
+  .demo-band h4{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+    color:var(--sage);margin-bottom:12px}
+  .ev-line{display:grid;grid-template-columns:12px 96px 1fr;gap:12px;align-items:center;
+    padding:9px 2px;font-size:13.5px;color:var(--sage-dark)}
+  .ev-line i{width:9px;height:9px;border-radius:var(--r-data)}
+  .ev-line .t{font-weight:600;font-size:12.5px;white-space:nowrap}
+  .c-work{background:var(--sage)} .c-move{background:var(--mist)}
+  .c-coach{background:var(--moss-deep);opacity:.55} .c-play{background:var(--moss-deep)}
+
+  .mc{border-radius:var(--r-card);padding:16px 18px;margin:10px 0;display:grid;
+    grid-template-columns:12px 1fr;gap:14px;align-items:start;
+    background:var(--white);box-shadow:var(--shadow);max-width:430px}
+  .mc > i{width:10px;height:10px;border-radius:50%;background:var(--amber);margin-top:6px}
+  .mc .mt{font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 24;
+    font-weight:600;font-size:14px;color:var(--sage-dark);display:block}
+  .mc .mn{font-size:17px;font-weight:600;line-height:1.25;margin-top:3px;display:block}
+  .mc .md{font-size:13px;color:var(--sage-dark);line-height:1.4;margin-top:4px;display:block}
+  .mchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .chip-m.stock{background:rgba(226,163,63,.28);color:var(--moss-deep)}
+  .mc.vide{background:transparent;box-shadow:none;border:1.5px dashed var(--mist)}
+  .mc.vide > i{background:var(--mist)}
+  .mc.vide .mn{color:var(--sage);font-weight:500}
+  .mc .plus{display:inline-flex;align-items:center;gap:6px;margin-top:8px;
+    font-size:12.5px;font-weight:700;color:var(--moss)}
+  .mc .plus b{width:19px;height:19px;border-radius:50%;background:var(--moss);color:var(--white);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .mc.pil{background:linear-gradient(130deg,rgba(226,163,63,.18),var(--white) 60%)}
+  .mc.vide.pil{background:linear-gradient(130deg,rgba(226,163,63,.1),transparent 60%);
+    border-color:rgba(226,163,63,.5)}
+  .mc.dehors{opacity:.82} .mc.dehors .mn{color:var(--sage-dark);font-weight:500}
+  .mc.fait{opacity:.45} .mc.fait .mn{text-decoration:line-through}
+
+  .opt-demo{background:var(--white);border-radius:var(--r-card);padding:13px;
+    box-shadow:var(--shadow);max-width:430px}
+  .ot{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:start}
+  .oth{width:64px;height:64px;border-radius:var(--r-media);background:#33574A;
+    display:flex;align-items:center;justify-content:center;color:rgba(252,252,249,.9);
+    font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 40;
+    font-weight:600;font-size:24px}
+  .opt-demo .on{font-size:15.5px;font-weight:600;line-height:1.22}
+  .oi{font-size:12px;color:var(--sage-dark);line-height:1.35;margin-top:3px}
+  .omk{width:24px;height:24px;border-radius:50%;border:2px solid var(--mist)}
+  .ofacts{margin-top:10px;padding-top:10px;border-top:1px solid var(--mist);
+    display:flex;flex-direction:column;gap:5px}
+  .of{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--sage-dark)}
+  .of i{width:5px;height:5px;border-radius:50%;background:var(--sage);flex:none}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">LazEat · Charte graphique · v3 · définitive</p>
+  <h1>Carnet<em>de bord</em></h1>
+  <p class="lede">Serif chaleureux, formes en pilule, ombres légères. Mais à l'intérieur du planning, les blocs gardent des angles vifs : ils encodent des durées, et un rayon les déformerait.</p>
+</header>
+
+<section>
+  <h2>Palette</h2>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#EEF0E8"><b>CREAM</b></div>
+      <div class="meta"><code>#EEF0E8</code><span>Fond général.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#33574A"><b style="color:#FCFCF9">MOSS</b></div>
+      <div class="meta"><code>#33574A</code><span>Texte et éléments principaux.</span><span class="ratio ok">7,0:1</span></div></div>
+    <div class="sw"><div class="chip" style="background:#244035"><b style="color:#FCFCF9">MOSS DEEP</b></div>
+      <div class="meta"><code>#244035</code><span>Mode cuisine, blocs d'effort.</span><span class="ratio ok">9,8:1</span></div></div>
+    <div class="sw"><div class="chip" style="background:#E2A33F"><b style="color:#244035">AMBER</b></div>
+      <div class="meta"><code>#E2A33F</code><span>Repas et action principale.</span><span class="ratio bad">2,1:1 clair</span> <span class="ratio ok">5,1:1 foncé</span></div></div>
+    <div class="sw"><div class="chip" style="background:#5F6F65"><b style="color:#FCFCF9">SAGE DARK</b></div>
+      <div class="meta"><code>#5F6F65</code><span>Texte secondaire.</span><span class="ratio ok">4,7:1</span></div></div>
+    <div class="sw"><div class="chip" style="background:#7E8F84"><b style="color:#FCFCF9">SAGE</b></div>
+      <div class="meta"><code>#7E8F84</code><span>Blocs de travail, contours.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#DBE0D5"><b>MIST</b></div>
+      <div class="meta"><code>#DBE0D5</code><span>Séparateurs, trajets.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#FCFCF9;border:1px solid #DBE0D5"><b>WHITE</b></div>
+      <div class="meta"><code>#FCFCF9</code><span>Cartes et surfaces.</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>La règle des rayons</h2>
+  <div class="radius-demo">
+    <div class="rd">
+      <h4 style="color:var(--moss)">Ce qui se touche → arrondi</h4>
+      <div class="items">
+        <span class="demo-pill">Bouton</span>
+        <span class="demo-box"></span>
+        <span class="demo-media"></span>
+      </div>
+      <p>Boutons et étiquettes en pilule, cartes à 20 px, médias à 14 px, cases à 8 px. L'arrondi signale l'interactif et adoucit l'ensemble.</p>
+    </div>
+    <div class="rd">
+      <h4 style="color:var(--moss)">Ce qui se mesure → angle vif</h4>
+      <div class="items" style="align-items:flex-end">
+        <span class="demo-bar s"></span>
+        <span class="demo-bar m"></span>
+        <span class="demo-bar"></span>
+      </div>
+      <p>Barres de progression, segments d'étapes, marqueurs de type d'événement. Rayon zéro, sans exception.</p>
+    </div>
+  </div>
+  <p class="note"><b>Pourquoi.</b> Un bloc de trente minutes avec un rayon en pilule devient un losange : ses extrémités s'effacent et il se lit plus court qu'il n'est. Les angles vifs préservent la lecture exacte des durées. La règle est donc fonctionnelle, pas esthétique — et elle est facile à retenir : <b>si l'élément représente une quantité, il n'a pas de rayon</b>.</p>
+</section>
+
+<section>
+  <h2>Typographie</h2>
+  <div class="type-row"><span class="lbl">Display XL<br>Fraunces 64</span><span class="fr" style="font-size:var(--t-display-xl);font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 120">Mardi</span></div>
+  <div class="type-row"><span class="lbl">Display L<br>Fraunces 36</span><span class="fr" style="font-size:var(--t-display-l)">Curry de pois chiches</span></div>
+  <div class="type-row"><span class="lbl">Display M<br>Fraunces 23</span><span class="fr" style="font-size:var(--t-display-m)">Étape 3 · Pétrir</span></div>
+  <div class="type-row"><span class="lbl">Body XL<br>Figtree 20</span><span style="font-size:var(--t-body-xl)">Instruction de cuisine, lisible à bout de bras.</span></div>
+  <div class="type-row"><span class="lbl">Body L<br>Figtree 17</span><span style="font-size:var(--t-body-l)">Texte courant de l'application.</span></div>
+  <div class="type-row"><span class="lbl">Body<br>Figtree 15</span><span style="font-size:var(--t-body)">Descriptions et contenu secondaire.</span></div>
+  <div class="type-row"><span class="lbl">Small<br>Figtree 13</span><span style="font-size:var(--t-small)">Mentions et légendes.</span></div>
+  <div class="type-row"><span class="lbl">Micro<br>Figtree 11 · 600</span><span style="font-size:var(--t-micro);letter-spacing:.09em;text-transform:uppercase;font-weight:600">Étiquettes et métadonnées</span></div>
+  <p class="note"><b>Fraunces</b> avec l'axe SOFT à 100 et WONK à 1. Sur le minuteur uniquement, WONK repasse à 0 : des chiffres lus à un mètre ne supportent pas la fantaisie. <b>Figtree</b> pour tout le reste. Capitales réservées aux micro-étiquettes.</p>
+</section>
+
+<section>
+  <h2>Boutons</h2>
+  <div class="btnrow">
+    <button class="btn">Lancer la recette</button>
+    <button class="btn sec">Modifier</button>
+  </div>
+  <h3>États</h3>
+  <div class="btnrow">
+    <button class="btn press">Pressé</button>
+    <button class="btn sec focus">Focus clavier</button>
+    <button class="btn dis">Désactivé</button>
+  </div>
+</section>
+
+<section>
+  <h2>Carte de recette</h2>
+  <div class="card">
+    <div class="ph"></div>
+    <div><h4>Gnocchis poêlés crème lardons</h4>
+      <div class="chips"><span class="chip-m time">10 min</span><span class="chip-m">quotidien</span><span class="chip-m">à éviter J+2</span></div></div>
+  </div>
+  <div style="height:var(--s3)"></div>
+  <div class="card">
+    <div class="ph"></div>
+    <div><h4>Pâte à pizza maison</h4>
+      <div class="chips"><span class="chip-m time">22 min</span><span class="chip-m compo">composant</span><span class="chip-m">4 pâtons</span></div></div>
+  </div>
+  <p class="note">Le temps actif en vert plein prime sur la photo : à 22h30, c'est « 10 min » qui décide si tu cuisines ou si tu commandes.</p>
+</section>
+
+<section>
+  <h2>Liste de courses</h2>
+  <div class="check"><span class="box"></span><span>Pois chiches en conserve — 2 boîtes</span></div>
+  <div class="check done"><span class="box on"></span><span>Lait de coco — 1 brique</span></div>
+  <div class="check"><span class="box"></span><span>Oignons — 4</span></div>
+</section>
+
+<section>
+  <h2>Planning — vue aérée</h2>
+
+  <h3>Sélecteur de semaine</h3>
+  <div class="ws-demo">
+    <div class="ws-d"><span class="i">L</span><span class="c"><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+    <div class="ws-d sel"><span class="i">M</span><span class="c"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+    <div class="ws-d"><span class="i">M</span><span class="c"><i class="on"></i><i></i><i></i><i></i></span></div>
+    <div class="ws-d"><span class="i">J</span><span class="c"><i></i><i></i><i></i><i></i></span></div>
+    <div class="ws-d"><span class="i">V</span><span class="c"><i></i><i></i><i></i><i></i><i></i></span></div>
+    <div class="ws-d"><span class="i">S</span><span class="c"><i></i><i></i><i></i></span></div>
+    <div class="ws-d"><span class="i">D</span><span class="c"><i></i><i></i><i></i><i></i></span></div>
+  </div>
+  <p class="note">Un point par créneau repas sous chaque jour — <b>mist</b> si vide, <b>ambre</b> si planifié. C'est ce qui remplace la vue d'ensemble : tu vois où il reste du travail sans changer d'écran.</p>
+
+  <h3>Bande et ligne d'événement</h3>
+  <div class="demo-band">
+    <h4>Après-midi</h4>
+    <div class="ev-line"><i class="c-move"></i><span class="t">17h30 – 18h30</span><span>Trajet</span></div>
+    <div class="ev-line"><i class="c-coach"></i><span class="t">19h – 20h30</span><span>Encadrement cadets</span></div>
+  </div>
+  <p class="note">L'événement est du contexte, pas du contenu : aucun fond, aucune ombre, texte entier en <b>sage-dark</b>. Un carré de 9 px porte la couleur du type.</p>
+
+  <h3>Carte de repas — cinq états</h3>
+
+  <div class="mc vide pil"><i></i><div><span class="mt">17h30</span>
+    <span class="mn">Collation dans le trajet</span>
+    <span class="md">Préparée le matin, mangée debout</span>
+    <span class="plus"><b>+</b>Choisir un repas</span></div></div>
+
+  <div class="mc"><i></i><div><span class="mt">22h30</span>
+    <span class="mn">Gnocchis poêlés crème lardons</span>
+    <span class="mchips"><span class="chip-m time">10 min</span><span class="chip-m">2 portions</span><span class="chip-m">quotidien</span></span></div></div>
+
+  <div class="mc pil"><i></i><div><span class="mt">12h30</span>
+    <span class="mn">Curry de pois chiches</span>
+    <span class="mchips"><span class="chip-m stock">au frigo</span><span class="chip-m">2 portions</span><span class="chip-m">avant vendredi</span></span></div></div>
+
+  <div class="mc dehors"><i></i><div><span class="mt">20h</span>
+    <span class="mn">Mange dehors</span></div></div>
+
+  <div class="mc fait"><i></i><div><span class="mt">7h30</span>
+    <span class="mn">Bol yaourt banane noix</span>
+    <span class="mchips"><span class="chip-m">fait</span></span></div></div>
+
+  <p class="note"><b>Le texte change de nature selon l'état.</b> Vide, la carte affiche le <b>créneau</b> et son conseil — c'est de l'aide à la décision. Remplie, elle affiche la <b>recette</b> et ses métadonnées — c'est ce qui sert en cuisine. Le conseil disparaît une fois le choix fait, il a joué son rôle.</p>
+  <p class="note">L'état vide est le plus important à réussir : c'est ce que tu vois le dimanche quand tout est à planifier.</p>
+
+  <h3>Option de la feuille de sélection</h3>
+  <div class="opt-demo">
+    <div class="ot">
+      <div class="oth">P</div>
+      <div><div class="on">Poêlée post-rugby express</div>
+        <div class="oi">Riz cuit, œufs, thon, légumes surgelés, sauce soja</div>
+        <div class="mchips"><span class="chip-m time">10 min</span><span class="chip-m">2 portions</span><span class="chip-m">quotidien</span><span class="chip-m stock">oméga-3</span></div></div>
+      <div class="omk"></div>
+    </div>
+    <div class="ofacts">
+      <div class="of"><i></i>5 ingrédients sur 6 — il manque le thon</div>
+      <div class="of"><i></i>Cuisinée il y a 12 jours · tu as mis 4/5</div>
+    </div>
+  </div>
+  <p class="note">Cinq informations de décision : vignette, ingrédients en une ligne, étiquettes, état du stock et historique personnel. <b>La ligne de stock est la plus utile</b> — elle dit exactement ce que ce choix ajoute à la liste de courses.</p>
+  <p class="note">Sélection <b>en liste par défaut</b>. Une variante en swipe plein écran reste possible plus tard, mais la liste permet de comparer plusieurs options d'un coup d'œil — ce que le swipe interdit par construction.</p>
+</section>
+
+<section>
+  <h2>Mode cuisine</h2>
+  <div class="kitchen">
+    <div class="prog"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="step">Étape 3 sur 9</p>
+    <h4>Pétrir</h4>
+    <p>Pétris sur le plan de travail en étirant et repliant. <b>N'ajoute pas de farine</b> même si ça colle : ça devient lisse tout seul.</p>
+    <div class="timer">05:12</div>
+    <div class="tbar"><i></i></div>
+    <div class="kbtn"><button>Retour</button><button class="main">Suivant</button></div>
+  </div>
+  <p class="note">Barre de minuteur et segments de progression à angles vifs — ils mesurent du temps. Panneau à 28 px et boutons en pilule — ils se touchent. Contraste ambre sur vert profond : <b>5,1:1</b>.</p>
+</section>
+
+<section>
+  <h2>Règles</h2>
+  <ul class="rules">
+    <li><b>1</b><span><b>Arrondi pour ce qui se touche, angle vif pour ce qui se mesure.</b> Aucune exception.</span></li>
+    <li><b>2</b><span><b>L'ambre ne décore jamais.</b> Repas, ou action principale. Deux usages.</span></li>
+    <li><b>3</b><span><b>Jamais de texte ambre sur fond clair.</b> 2,1:1. Sur vert profond uniquement.</span></li>
+    <li><b>4</b><span><b>Capitales réservées aux micro-étiquettes.</b></span></li>
+    <li><b>5</b><span><b>Plancher de 20 px en mode cuisine.</b> Le téléphone est sur le plan de travail.</span></li>
+    <li><b>6</b><span><b>Ombres très légères, jamais de bordure épaisse.</b></span></li>
+  </ul>
+  <h3>À ne pas faire</h3>
+  <ul class="rules no">
+    <li><b>×</b><span>Crème beige avec accent terracotta.</span></li>
+    <li><b>×</b><span>Arrondir les barres de progression ou les marqueurs d'événement.</span></li>
+    <li><b>×</b><span>Anneau circulaire pour le minuteur.</span></li>
+    <li><b>×</b><span>Vocabulaire de performance ou de discipline.</span></li>
+  </ul>
+</section>
+
+</div>
+
+
+</body>
+</html>
