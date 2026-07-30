@@ -99,6 +99,14 @@ Chaque ligne pointe vers un `id` du référentiel. **Jamais de texte libre** —
 |---|---|---|---|---|
 | `farine-t65` | 600 | g | non | `farine-t55` |
 
+### Sous-groupes d'ingrédients
+
+Un second tableau sous un titre de niveau 3 est **toujours additif** : ses ingrédients s'ajoutent à ceux du groupe principal et partent aux courses avec eux. C'est le cas de la sauce d'accompagnement des gyoza.
+
+**Une alternative ne se met jamais dans un tableau.** Une préparation qui *remplace* un ingrédient du groupe principal — une sauce maison contre une sauce du commerce — se décrit en prose dans les notes. Sinon l'agrégation achète les deux.
+
+Seule exception, les recettes `type_production: composant` peuvent porter un second tableau annoté « recette séparée » à titre indicatif : il n'est pas agrégé, puisqu'il appartient à la recette fille.
+
 ## Étapes
 
 Une étape par bloc. Le `minuteur` est en secondes, et doit être présent dès qu'il y a une attente, même passive.

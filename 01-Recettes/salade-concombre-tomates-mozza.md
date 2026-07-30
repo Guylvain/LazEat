@@ -69,16 +69,6 @@ Double usage : gamelle du midi grâce à ses propriétés `bon_froid` et `transp
 | `huile-olive` | 15 | ml | oui | — |
 | `poivre-noir` | 1 | g | non | — |
 
-### Sauce blanche maison — deux minutes
-
-| ingredient_id | quantité | unité |
-|---|---|---|
-| `yaourt-grec` | 150 | g |
-| `citron` | 0.5 | piece |
-| `ail` | 1 | piece |
-| `menthe-fraiche` | 5 | g |
-| `sel-fin` | 2 | g |
-
 ## Étapes
 
 ### 1. Tailler
@@ -102,4 +92,4 @@ Tout réunir dans le saladier. Ajouter `{sauce-blanche}`, `{origan-seche}`, `{hu
 
 **En gamelle** : transporter la sauce à part dans un petit contenant. Assemblé le matin, le plat est aqueux à midi.
 
-**Sauce maison** : mélanger yaourt grec, jus de citron, ail écrasé, menthe ciselée et sel. Deux minutes, se garde trois jours, et remplace avantageusement la version du commerce.
+**Sauce maison, en remplacement de la sauce du commerce** : 150 g de yaourt grec, le jus d'un demi-citron, une gousse d'ail écrasée, 5 g de menthe ciselée, une pincée de sel. Deux minutes, se garde trois jours. Si tu la fais, remplace `sauce-blanche` par `yaourt-grec` dans le tableau au moment des courses.
