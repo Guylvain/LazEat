@@ -181,7 +181,7 @@ ingredients:
   substituts: [corn-flakes-ecrases]
 
 - id: pain-complet
-  nom: Pain complet (tranche)
+  nom: tranche de pain complet
   categorie: feculent
   rayon: epicerie
   unite_base: piece
@@ -197,7 +197,7 @@ ingredients:
   substituts: [pain-levain]
 
 - id: pain-burger
-  nom: Pain à burger
+  nom: pain à burger
   categorie: feculent
   rayon: epicerie
   unite_base: piece
@@ -213,7 +213,7 @@ ingredients:
   substituts: []
 
 - id: pain-ciabatta
-  nom: Pain ciabatta
+  nom: pain ciabatta
   categorie: feculent
   rayon: epicerie
   unite_base: piece
@@ -229,7 +229,7 @@ ingredients:
   substituts: [paton-pizza]
 
 - id: tortillas-ble
-  nom: Tortillas de blé
+  nom: tortilla de blé
   categorie: feculent
   rayon: epicerie
   unite_base: piece
@@ -245,7 +245,7 @@ ingredients:
   substituts: [tortillas-mais, pain-pita]
 
 - id: pates-gyoza
-  nom: Pâtes à gyoza
+  nom: disque de pâte à gyoza
   categorie: feculent
   rayon: frais
   unite_base: piece
@@ -261,7 +261,7 @@ ingredients:
   substituts: []
 
 - id: paton-pizza
-  nom: Pâton de pizza
+  nom: pâton de pizza
   categorie: feculent
   rayon: epicerie
   unite_base: piece
@@ -405,7 +405,7 @@ ingredients:
   substituts: [boeuf-hache-5]
 
 - id: faux-filet
-  nom: Faux-filet
+  nom: faux-filet
   categorie: proteine
   rayon: boucherie
   unite_base: piece
@@ -485,7 +485,7 @@ ingredients:
   substituts: [chorizo, salami-piquant]
 
 - id: oeufs
-  nom: Œufs
+  nom: œuf
   categorie: proteine
   rayon: frais
   unite_base: piece
@@ -533,7 +533,7 @@ ingredients:
   substituts: [maquereaux-conserve]
 
 - id: ail
-  nom: Ail (gousse)
+  nom: gousse d'ail
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -549,7 +549,7 @@ ingredients:
   substituts: []
 
 - id: oignon
-  nom: Oignon
+  nom: oignon
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -565,7 +565,7 @@ ingredients:
   substituts: [echalote]
 
 - id: oignon-rouge
-  nom: Oignon rouge
+  nom: oignon rouge
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -581,7 +581,7 @@ ingredients:
   substituts: [echalote]
 
 - id: echalote
-  nom: Échalote
+  nom: échalote
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -597,7 +597,7 @@ ingredients:
   substituts: [oignon-rouge]
 
 - id: ciboule
-  nom: Ciboule
+  nom: ciboule
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -629,7 +629,7 @@ ingredients:
   substituts: [gingembre-moulu]
 
 - id: carotte
-  nom: Carotte
+  nom: carotte
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -645,7 +645,7 @@ ingredients:
   substituts: []
 
 - id: poivron-rouge
-  nom: Poivron rouge
+  nom: poivron rouge
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -661,7 +661,7 @@ ingredients:
   substituts: []
 
 - id: concombre
-  nom: Concombre
+  nom: concombre
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -677,7 +677,7 @@ ingredients:
   substituts: []
 
 - id: tomates-grappe
-  nom: Tomates grappe
+  nom: tomate grappe
   categorie: legume
   rayon: fruits-legumes
   unite_base: piece
@@ -885,7 +885,7 @@ ingredients:
   substituts: []
 
 - id: banane
-  nom: Banane
+  nom: banane
   categorie: fruit
   rayon: fruits-legumes
   unite_base: piece
@@ -901,7 +901,7 @@ ingredients:
   substituts: []
 
 - id: citron
-  nom: Citron
+  nom: citron
   categorie: fruit
   rayon: fruits-legumes
   unite_base: piece

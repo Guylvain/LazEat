@@ -76,7 +76,7 @@ Poêle à feu moyen-vif avec `{huile-olive}`. Verser les cubes, laisser dorer qu
 ### 3. Rillettes de sardines
 `minuteur: 300`
 
-Égoutter `{sardines-conserve}` et retirer les arêtes centrales visibles. Écraser à la fourchette avec `{fromage-blanc}`, `{echalote}` finement ciselée, le jus d'un demi `{citron}` et `{poivre-noir}`. Texture grossière, pas une purée.
+Égoutter `{sardines-conserve}` et retirer les arêtes centrales visibles. Écraser à la fourchette avec `{fromage-blanc}`, `{echalote}` finement ciselée, le jus d'un demi citron et `{poivre-noir}`. Texture grossière, pas une purée.
 
 ### 4. Dresser
 `minuteur: 120`

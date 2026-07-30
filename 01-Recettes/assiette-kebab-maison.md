@@ -67,7 +67,7 @@ Le yaourt de la marinade attendrit la viande par son acidité — c'est ce qui r
 ### 1. Mariner
 `minuteur: 1800`
 
-Couper `{filets-poulet}` en lanières fines. Mélanger avec la moitié de `{yaourt-grec}`, `{cumin-moulu}`, la moitié de `{paprika}`, deux gousses de `{ail}` écrasées, le jus d'un demi `{citron}` et `{sel-fin}`. Laisser reposer trente minutes minimum.
+Couper `{filets-poulet}` en lanières fines. Mélanger avec la moitié de `{yaourt-grec}`, `{cumin-moulu}`, la moitié de `{paprika}`, deux gousses d'ail écrasées, le jus d'un demi citron et `{sel-fin}`. Laisser reposer trente minutes minimum.
 
 ### 2. Frites au four
 `minuteur: 1800`
@@ -77,7 +77,7 @@ Four à 220 °C. Couper `{pommes-de-terre}` en bâtonnets, sécher au torchon, m
 ### 3. Sauce blanche
 `minuteur: 180`
 
-Mélanger le reste de `{yaourt-grec}`, une gousse de `{ail}` écrasée, le jus du demi `{citron}` restant, `{menthe-fraiche}` ciselée et du sel.
+Mélanger le reste de `{yaourt-grec}`, une gousse d'ail écrasée, le jus du demi-citron restant, `{menthe-fraiche}` ciselée et du sel.
 
 ### 4. Cuire la viande
 `minuteur: 480`
