@@ -71,7 +71,7 @@ Plat déjà réalisé, intégré au socle. Recette du jeudi soir ou du samedi.
 | `pommes-grenailles` | 500 | g | non | `pommes-de-terre-rattes` |
 | `ail` | 4 | piece | non | — |
 | `thym-seche` | 2 | g | non | `herbes-provence` |
-| `beurre-demi-sel` | 30 | g | non | `beurre-doux` + sel |
+| `beurre-demi-sel` | 30 | g | non | `beurre-doux` |
 | `huile-olive` | 20 | ml | non | — |
 | `sel-fin` | 4 | g | non | — |
 | `poivre-noir` | 2 | g | non | — |

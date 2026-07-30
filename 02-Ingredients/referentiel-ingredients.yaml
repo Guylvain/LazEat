@@ -1863,6 +1863,10 @@ ingredients:
   nom: Riz long grain
   a_completer: true
 
+- id: ricotta
+  nom: Ricotta
+  a_completer: true
+
 - id: salami-piquant
   nom: Salami piquant
   a_completer: true

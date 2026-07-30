@@ -64,7 +64,7 @@ Double usage : gamelle du midi grâce à ses propriétés `bon_froid` et `transp
 | `concombre` | 2 | piece | non | — |
 | `tomates-cerises` | 400 | g | non | `tomates-grappe` |
 | `mozzarella` | 250 | g | non | `feta`, `burrata` |
-| `sauce-blanche` | 60 | g | non | voir version maison |
+| `sauce-blanche` | 60 | g | non | `yaourt-grec` |
 | `origan-seche` | 2 | g | oui | `basilic-frais` |
 | `huile-olive` | 15 | ml | oui | — |
 | `poivre-noir` | 1 | g | non | — |

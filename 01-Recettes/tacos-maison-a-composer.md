@@ -49,7 +49,7 @@ Dîner convivial par construction : on cuisine les éléments séparément et ch
 | ingredient_id | quantité | unité | optionnel | substituts |
 |---|---|---|---|---|
 | `tortillas-ble` | 6 | piece | non | `tortillas-mais` |
-| `boeuf-hache-5` | 400 | g | non | `filets-poulet`, `chili-con-carne` |
+| `boeuf-hache-5` | 400 | g | non | `filets-poulet` |
 | `haricots-rouges-conserve` | 240 | g | non | — |
 | `oignon` | 1 | piece | non | — |
 | `poivron-rouge` | 1 | piece | non | — |

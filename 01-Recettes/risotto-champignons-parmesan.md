@@ -53,7 +53,7 @@ Aucune technique difficile, uniquement de la patience. C'est le plat qui donne l
 | `bouillon-legumes` | 900 | ml | non | `bouillon-volaille` |
 | `echalote` | 2 | piece | non | `oignon` |
 | `ail` | 2 | piece | non | — |
-| `vin-blanc-sec` | 100 | ml | oui | `bouillon` + jus de citron |
+| `vin-blanc-sec` | 100 | ml | oui | `bouillon-legumes`, `citron` |
 | `parmesan` | 80 | g | non | — |
 | `beurre-demi-sel` | 40 | g | non | — |
 | `huile-olive` | 20 | ml | non | — |
