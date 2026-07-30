@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LazEat — Navigation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..800&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EEF0E8; --white:#FCFCF9; --moss:#33574A; --moss-deep:#244035;
+    --amber:#E2A33F; --sage:#7E8F84; --sage-dark:#5F6F65; --mist:#DBE0D5;
+    --r-pill:999px; --r-card:20px; --r-media:14px; --r-box:8px; --r-data:0;
+    --shadow:0 2px 12px rgba(36,64,53,.06);
+    --shadow-up:0 -2px 12px rgba(36,64,53,.07);
+    --safe:22px;               /* simule env(safe-area-inset-bottom) */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E2E5DC;color:var(--moss);font-family:'Figtree',system-ui,sans-serif;
+    line-height:1.5;font-feature-settings:'tnum' 1;-webkit-font-smoothing:antialiased;
+    padding:26px 16px 60px}
+  .fr{font-family:'Fraunces',Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 40;
+    font-weight:600;letter-spacing:-.015em;line-height:1.05}
+
+  .page{max-width:900px;margin:0 auto}
+  .intro{max-width:52ch;margin:0 auto 26px;text-align:center}
+  .intro h1{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 90;font-weight:600;
+    font-size:clamp(26px,7vw,38px);line-height:1;letter-spacing:-.025em}
+  .intro p{font-size:14px;color:var(--sage-dark);margin-top:10px}
+
+  /* ── téléphone ── */
+  .stage{display:flex;gap:34px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+  .phone{width:340px;height:690px;background:var(--cream);border-radius:34px;
+    position:relative;overflow:hidden;box-shadow:0 14px 44px rgba(36,64,53,.18);
+    border:9px solid #1B2B24;flex:none}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:104px;height:22px;
+    background:#1B2B24;border-radius:0 0 13px 13px;z-index:60}
+  .screen{position:absolute;inset:0;overflow-y:auto;padding:38px 16px calc(64px + var(--safe));
+    scrollbar-width:none}
+  .screen::-webkit-scrollbar{display:none}
+  .screen.hidden{display:none}
+
+  /* ── barre d'onglets ── */
+  .tabs{position:absolute;left:0;right:0;bottom:0;z-index:50;background:var(--white);
+    box-shadow:var(--shadow-up);border-top:1px solid var(--mist);
+    padding-bottom:var(--safe);display:flex;transition:transform .26s cubic-bezier(.32,.72,0,1)}
+  .tabs.off{transform:translateY(110%)}
+  .tab{flex:1;height:58px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:3px;border:none;background:transparent;cursor:pointer;
+    color:var(--sage);font-family:inherit;position:relative}
+  .tab.on{color:var(--moss)}
+  .tab span{font-size:10.5px;font-weight:600;letter-spacing:.01em}
+  .tab svg{width:24px;height:24px;stroke:currentColor;fill:none;
+    stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .badge{position:absolute;top:6px;left:calc(50% + 7px);min-width:18px;height:18px;
+    border-radius:var(--r-pill);background:var(--amber);color:var(--moss-deep);
+    font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    padding:0 5px}
+  .safe-line{position:absolute;left:0;right:0;bottom:0;height:var(--safe);z-index:51;
+    pointer-events:none;background:repeating-linear-gradient(45deg,
+      rgba(226,163,63,.14) 0 6px,transparent 6px 12px)}
+  .safe-line.off{display:none}
+  .home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+    width:110px;height:4px;border-radius:var(--r-pill);background:rgba(36,64,53,.3);z-index:55}
+
+  /* ── contenu ── */
+  h2.t{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 70;font-weight:600;
+    font-size:30px;line-height:1;letter-spacing:-.025em;margin-bottom:4px}
+  .sub{font-size:12.5px;color:var(--sage-dark);margin-bottom:16px}
+  .lbl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+    color:var(--sage);margin:20px 0 10px}
+  .lbl:first-of-type{margin-top:14px}
+
+  .ws{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px}
+  .ws-d{text-align:center;padding:7px 0 6px;border-radius:var(--r-media);
+    background:var(--white);box-shadow:var(--shadow)}
+  .ws-d.sel{background:var(--moss)}
+  .ws-d i{font-family:'Fraunces',Georgia,serif;font-style:normal;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 24;font-weight:600;font-size:12px}
+  .ws-d.sel i{color:var(--white)}
+  .ws-d b{display:flex;justify-content:center;gap:2px;margin-top:5px;height:4px}
+  .ws-d b s{width:4px;height:4px;border-radius:50%;background:var(--mist);text-decoration:none}
+  .ws-d b s.on{background:var(--amber)}
+
+  .ev{display:grid;grid-template-columns:10px 84px 1fr;gap:9px;align-items:center;
+    padding:7px 2px;font-size:12px;color:var(--sage-dark)}
+  .ev i{width:8px;height:8px;border-radius:var(--r-data)}
+  .cw{background:var(--sage)} .cm{background:var(--mist)}
+  .cp{background:var(--moss-deep)} .cg{background:var(--moss-deep);opacity:.72}
+  .ev b{font-weight:600;font-size:11.5px}
+
+  .meal{border-radius:var(--r-card);padding:13px 15px;margin:8px 0;display:grid;
+    grid-template-columns:10px 1fr;gap:11px;align-items:start;background:var(--white);
+    box-shadow:var(--shadow);cursor:pointer;border:none;width:100%;text-align:left;font-family:inherit}
+  .meal>i{width:9px;height:9px;border-radius:50%;background:var(--amber);margin-top:5px}
+  .meal .h{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 24;font-weight:600;
+    font-size:13px;color:var(--sage-dark);display:block}
+  .meal .n{font-size:15px;font-weight:600;line-height:1.22;margin-top:2px;display:block;color:var(--moss)}
+  .meal .d{font-size:11.5px;color:var(--sage-dark);margin-top:3px;display:block}
+  .meal.vide{background:transparent;box-shadow:none;border:1.5px dashed var(--mist)}
+  .meal.vide>i{background:var(--mist)} .meal.vide .n{color:var(--sage);font-weight:500}
+  .meal.pil{background:linear-gradient(130deg,rgba(226,163,63,.18),var(--white) 60%)}
+  .plus{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:11.5px;
+    font-weight:700;color:var(--moss)}
+  .plus b{width:17px;height:17px;border-radius:50%;background:var(--moss);color:var(--white);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+
+  .rc{background:var(--white);border-radius:var(--r-card);padding:10px;margin-bottom:8px;
+    display:grid;grid-template-columns:60px 1fr;gap:11px;align-items:center;
+    box-shadow:var(--shadow);cursor:pointer;border:none;width:100%;text-align:left;font-family:inherit}
+  .th{width:60px;height:60px;border-radius:var(--r-media);display:flex;align-items:center;
+    justify-content:center;font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 40;font-weight:600;
+    font-size:21px;color:rgba(252,252,249,.9)}
+  .rc .n{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 30;font-weight:600;
+    font-size:15.5px;line-height:1.15}
+  .ch{font-size:10px;font-weight:700;padding:3px 8px;border-radius:var(--r-pill);
+    background:var(--cream);color:var(--sage-dark)}
+  .ch.time{background:var(--moss);color:var(--white)}
+  .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+
+  .art{display:flex;align-items:center;gap:11px;padding:11px 14px;min-height:52px;
+    background:var(--white);border-radius:var(--r-media);margin-bottom:6px;box-shadow:var(--shadow);
+    font-size:13.5px;cursor:pointer}
+  .bx{width:23px;height:23px;border:2px solid var(--sage);border-radius:var(--r-box);flex:none;
+    display:flex;align-items:center;justify-content:center}
+  .bx.on{background:var(--moss);border-color:var(--moss)}
+  .bx.on::after{content:"";width:10px;height:5px;border-left:2.5px solid var(--white);
+    border-bottom:2.5px solid var(--white);transform:rotate(-45deg) translate(1px,-2px)}
+  .art.done{opacity:.5} .art.done span{text-decoration:line-through}
+  .art .q{margin-left:auto;font-size:12px;font-weight:700;color:var(--sage-dark)}
+
+  /* ── mode cuisine ── */
+  .kit{position:absolute;inset:0;z-index:70;background:var(--moss-deep);color:var(--white);
+    padding:38px 20px 26px;display:flex;flex-direction:column;
+    transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1)}
+  .kit.on{transform:translateY(0)}
+  .kit .back{background:transparent;border:none;color:rgba(252,252,249,.75);font-size:12.5px;
+    font-weight:600;cursor:pointer;font-family:inherit;text-align:left;padding:0 0 14px}
+  .kit .prog{display:flex;gap:3px;margin-bottom:14px}
+  .kit .prog i{height:3px;flex:1;background:rgba(252,252,249,.22);border-radius:var(--r-data)}
+  .kit .prog i.on{background:var(--amber)}
+  .kit .st{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700}
+  .kit h3{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 60;font-weight:600;
+    font-size:31px;line-height:1.05;letter-spacing:-.02em;margin:9px 0 13px}
+  .kit p{font-size:17px;line-height:1.5;opacity:.94}
+  .kit p b{color:var(--amber);font-weight:700}
+  .kit .tm{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 0,'opsz' 144;font-weight:600;
+    font-size:52px;line-height:1;margin:auto 0 10px;letter-spacing:-.02em}
+  .kit .bar{height:5px;background:rgba(252,252,249,.2);border-radius:var(--r-data);margin-bottom:20px}
+  .kit .bar i{display:block;height:100%;width:38%;background:var(--amber);border-radius:var(--r-data)}
+  .kit .btns{display:flex;gap:9px}
+  .kit .btns button{flex:1;min-height:52px;font-family:inherit;font-weight:600;font-size:15px;
+    border-radius:var(--r-pill);border:1.5px solid rgba(252,252,249,.35);background:transparent;
+    color:var(--white);cursor:pointer}
+  .kit .btns button.main{background:var(--amber);border-color:var(--amber);
+    color:var(--moss-deep);flex:1.6}
+
+  /* ── annotations ── */
+  .notes{width:300px;flex:none}
+  .note{background:var(--white);border-radius:var(--r-card);padding:15px 17px;
+    margin-bottom:11px;box-shadow:var(--shadow);font-size:13px;color:var(--sage-dark);line-height:1.5}
+  .note h4{font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 30;font-weight:600;
+    font-size:16px;color:var(--moss);margin-bottom:6px;letter-spacing:-.015em}
+  .note b{color:var(--moss);font-weight:600}
+  .note.amberish{background:linear-gradient(130deg,rgba(226,163,63,.16),var(--white) 55%)}
+  @media(max-width:760px){.notes{width:100%;max-width:340px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="intro">
+    <h1>Navigation</h1>
+    <p>Touche les onglets. Puis touche un repas planifié pour lancer le mode cuisine et voir la barre s'effacer.</p>
+  </div>
+
+  <div class="stage">
+    <div class="phone">
+      <div class="notch"></div>
+
+      <!-- PLANNING -->
+      <div class="screen" id="s-planning">
+        <h2 class="t">Mardi</h2>
+        <p class="sub">Cadets 19h · ta séance 20h30</p>
+        <div class="ws">
+          <div class="ws-d"><i>L</i><b><s class="on"></s><s class="on"></s><s></s><s></s></b></div>
+          <div class="ws-d sel"><i>M</i><b><s class="on"></s><s class="on"></s><s class="on"></s><s></s><s></s></b></div>
+          <div class="ws-d"><i>M</i><b><s class="on"></s><s></s><s></s><s></s></b></div>
+          <div class="ws-d"><i>J</i><b><s></s><s></s><s></s><s></s></b></div>
+          <div class="ws-d"><i>V</i><b><s></s><s></s><s></s><s></s><s></s></b></div>
+          <div class="ws-d"><i>S</i><b><s></s><s></s><s></s></b></div>
+          <div class="ws-d"><i>D</i><b><s></s><s></s><s></s><s></s></b></div>
+        </div>
+        <p class="lbl">Matin</p>
+        <button class="meal" data-cook="1"><i></i><span>
+          <span class="h">7h30</span><span class="n">Bol yaourt banane noix</span>
+          <span class="chips"><span class="ch time">2 min</span><span class="ch">1 portion</span></span></span></button>
+        <div class="ev"><i class="cm"></i><b>8h30 – 9h30</b><span>Trajet</span></div>
+        <div class="ev"><i class="cw"></i><b>9h30 – 17h30</b><span>Entreprise</span></div>
+        <p class="lbl">Après-midi</p>
+        <button class="meal pil" data-cook="1"><i></i><span>
+          <span class="h">12h30</span><span class="n">Salade pois chiches feta</span>
+          <span class="chips"><span class="ch time">12 min</span><span class="ch">2 portions</span></span></span></button>
+        <button class="meal vide pil"><i></i><span>
+          <span class="h">17h30</span><span class="n">Collation dans le trajet</span>
+          <span class="d">Préparée le matin, mangée debout</span>
+          <span class="plus"><b>+</b>Choisir un repas</span></span></button>
+        <p class="lbl">Soir</p>
+        <div class="ev"><i class="cp"></i><b>19h – 20h30</b><span>Encadrement cadets</span></div>
+        <button class="meal vide pil"><i></i><span>
+          <span class="h">20h15</span><span class="n">Recharge express</span>
+          <span class="plus"><b>+</b>Choisir un repas</span></span></button>
+        <div class="ev"><i class="cp"></i><b>20h30 – 22h</b><span>Entraînement</span></div>
+        <button class="meal" data-cook="1"><i></i><span>
+          <span class="h">22h30</span><span class="n">Gnocchis poêlés crème lardons</span>
+          <span class="chips"><span class="ch time">10 min</span><span class="ch">2 portions</span></span></span></button>
+      </div>
+
+      <!-- RECETTES -->
+      <div class="screen hidden" id="s-recettes">
+        <h2 class="t">Recettes</h2>
+        <p class="sub">31 recettes · 14 à cuisiner à deux</p>
+        <div class="chips" style="margin-bottom:14px">
+          <span class="ch time">Tous</span><span class="ch">Post-entraînement</span>
+          <span class="ch">Déjeuner</span><span class="ch">Batch</span>
+        </div>
+        <button class="rc" data-cook="1"><div class="th" style="background:#33574A">G</div>
+          <div><div class="n">Gnocchis poêlés crème lardons</div>
+            <div class="chips"><span class="ch time">10 min</span><span class="ch">quotidien</span></div></div></button>
+        <button class="rc" data-cook="1"><div class="th" style="background:#5F6F65">P</div>
+          <div><div class="n">Poêlée post-rugby express</div>
+            <div class="chips"><span class="ch time">10 min</span><span class="ch">oméga-3</span></div></div></button>
+        <button class="rc" data-cook="1"><div class="th" style="background:#244035">C</div>
+          <div><div class="n">Curry de pois chiches au lait de coco</div>
+            <div class="chips"><span class="ch time">20 min</span><span class="ch">batch</span></div></div></button>
+        <button class="rc" data-cook="1"><div class="th" style="background:#3F6152">P</div>
+          <div><div class="n">Pâte à pizza maison</div>
+            <div class="chips"><span class="ch time">22 min</span><span class="ch">composant</span></div></div></button>
+        <button class="rc" data-cook="1"><div class="th" style="background:#7E8F84">F</div>
+          <div><div class="n">Faux-filet et pommes grenailles</div>
+            <div class="chips"><span class="ch time">25 min</span><span class="ch">soigné</span></div></div></button>
+      </div>
+
+      <!-- COURSES -->
+      <div class="screen hidden" id="s-courses">
+        <h2 class="t">Courses</h2>
+        <p class="sub">14 articles restants · 7 recettes couvertes</p>
+        <p class="lbl">Fruits et légumes</p>
+        <div class="art"><span class="bx"></span><span>Concombre</span><span class="q">2</span></div>
+        <div class="art done"><span class="bx on"></span><span>Tomates cerises</span><span class="q">250 g</span></div>
+        <div class="art"><span class="bx"></span><span>Oignons</span><span class="q">6</span></div>
+        <p class="lbl">Frais</p>
+        <div class="art"><span class="bx"></span><span>Lardons fumés</span><span class="q">400 g</span></div>
+        <div class="art"><span class="bx"></span><span>Crème fraîche épaisse</span><span class="q">400 ml</span></div>
+        <p class="lbl">Épicerie</p>
+        <div class="art"><span class="bx"></span><span>Pois chiches en conserve</span><span class="q">2 boîtes</span></div>
+        <div class="art"><span class="bx"></span><span>Lait de coco</span><span class="q">1 brique</span></div>
+        <p class="lbl">À vérifier</p>
+        <div class="art"><span class="bx"></span><span>Reste-t-il du paprika ?</span></div>
+        <div class="art"><span class="bx"></span><span>Reste-t-il de l'huile d'olive ?</span></div>
+      </div>
+
+      <!-- MODE CUISINE -->
+      <div class="kit" id="kit">
+        <button class="back" id="kback">‹ Quitter le mode cuisine</button>
+        <div class="prog"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="st">Étape 3 sur 9</p>
+        <h3>Pétrir</h3>
+        <p>Pétris en étirant et repliant. <b>N'ajoute pas de farine</b> même si ça colle.</p>
+        <div class="tm">05:12</div>
+        <div class="bar"><i></i></div>
+        <div class="btns"><button>Retour</button><button class="main">Suivant</button></div>
+      </div>
+
+      <!-- BARRE -->
+      <nav class="tabs" id="tabs">
+        <button class="tab on" data-s="planning">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+          <span>Planning</span></button>
+        <button class="tab" data-s="recettes">
+          <svg viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8.5 4.5 4 4.8v13c4.5-.3 6.5.2 8 1.7 1.5-1.5 3.5-2 8-1.7v-13c-4.5-.3-6.5.2-8 1.7z"/><path d="M12 6.5v13"/></svg>
+          <span>Recettes</span></button>
+        <button class="tab" data-s="courses">
+          <svg viewBox="0 0 24 24"><path d="M4 6h2l1.6 9.3a2 2 0 0 0 2 1.7h7a2 2 0 0 0 2-1.6L20 9H7"/><circle cx="10" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+          <span>Courses</span><em class="badge" style="font-style:normal">14</em></button>
+      </nav>
+      <div class="safe-line" id="safe"></div>
+      <div class="home-ind"></div>
+    </div>
+
+    <div class="notes">
+      <div class="note"><h4>Trois destinations</h4>
+        Planning au lancement, c'est le hub où l'on décide. Recettes pour cuisiner sans passer par le planning. Courses pour le magasin.</div>
+      <div class="note amberish"><h4>Le mode cuisine masque la barre</h4>
+        On ne navigue pas pendant qu'on cuisine, et chaque pixel compte sur un téléphone posé sur le plan de travail. Il porte son propre bouton retour. <b>Touche un repas planifié pour voir l'effet.</b></div>
+      <div class="note"><h4>La zone hachurée</h4>
+        C'est <b>env(safe-area-inset-bottom)</b>. Sans ce retrait, la barre passe sous l'indicateur d'accueil des iPhone en PWA installée — invisible en développement sur ordinateur.</div>
+      <div class="note"><h4>La pastille</h4>
+        Le nombre d'articles restant à acheter, en ambre. Rien si la liste est vide ou entièrement cochée. Tu vois qu'il reste du travail sans changer d'écran.</div>
+      <div class="note"><h4>Rayon nul</h4>
+        La barre est ancrée au bord de l'écran, elle ne flotte pas. Angles vifs et filet supérieur — les rayons restent aux éléments qui flottent.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const tabs=document.getElementById('tabs'), safe=document.getElementById('safe'), kit=document.getElementById('kit');
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.screen').forEach(s=>
+    s.classList.toggle('hidden', s.id!=='s-'+b.dataset.s));
+});
+document.querySelectorAll('[data-cook]').forEach(b=>b.onclick=()=>{
+  kit.classList.add('on'); tabs.classList.add('off'); safe.classList.add('off');
+});
+document.getElementById('kback').onclick=()=>{
+  kit.classList.remove('on'); tabs.classList.remove('off'); safe.classList.remove('off');
+};
+document.querySelectorAll('.art').forEach(a=>a.onclick=()=>{
+  a.classList.toggle('done'); a.querySelector('.bx').classList.toggle('on');
+  const n=document.querySelectorAll('.art:not(.done)').length;
+  document.querySelector('.badge').textContent=n;
+});
+</script>
+</body>
+</html>
