@@ -56,7 +56,7 @@ Dîner convivial par construction : on cuisine les éléments séparément et ch
 | `tomates-grappe` | 3 | piece | non | — |
 | `salade-romaine` | 100 | g | non | — |
 | `fromage-rape` | 100 | g | non | `cheddar` |
-| `yaourt-grec` | 150 | g | non | `creme-fraiche` |
+| `yaourt-grec` | 150 | g | non | `creme-fraiche-epaisse` |
 | `citron` | 1 | piece | non | `citron-vert` |
 | `cumin-moulu` | 6 | g | non | — |
 | `paprika` | 6 | g | non | — |

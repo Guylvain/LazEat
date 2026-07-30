@@ -48,7 +48,7 @@ La plus riche des trois garnitures, et la seule qui demande une précuisson. Rec
 |---|---|---|---|---|
 | `paton-pizza` | 1 | piece | non | — |
 | `pommes-de-terre` | 200 | g | non | — |
-| `lardons-fumes` | 80 | g | non | `dés-de-jambon` |
+| `lardons-fumes` | 80 | g | non | `des-de-jambon` |
 | `oignon` | 1 | piece | non | — |
 | `creme-fraiche-epaisse` | 60 | ml | non | — |
 | `reblochon` | 100 | g | non | `raclette`, `comte` |

@@ -27,7 +27,6 @@ duree_conservation_frigo: 2
 bon_froid: false
 transportable: false
 registre: quotidien
-roles_a_deux: null
 ustensiles_requis:
   - poele
 

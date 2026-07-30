@@ -29,7 +29,6 @@ duree_conservation_frigo: 4
 bon_froid: false
 transportable: false
 registre: quotidien
-roles_a_deux: null
 ustensiles_requis:
   - grande-casserole
 

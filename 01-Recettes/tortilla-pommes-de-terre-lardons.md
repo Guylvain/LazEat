@@ -50,7 +50,7 @@ C'est la seule recette du socle à la fois rapide, excellente froide, transporta
 |---|---|---|---|---|
 | `pommes-de-terre` | 400 | g | non | — |
 | `oeufs` | 6 | piece | non | — |
-| `lardons-fumes` | 100 | g | non | `chorizo`, `dés-de-jambon` |
+| `lardons-fumes` | 100 | g | non | `chorizo`, `des-de-jambon` |
 | `oignon` | 1 | piece | non | — |
 | `huile-olive` | 30 | ml | non | — |
 | `paprika` | 2 | g | oui | — |

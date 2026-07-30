@@ -28,7 +28,6 @@ duree_conservation_frigo: 1
 bon_froid: false
 transportable: false
 registre: quotidien
-roles_a_deux: null
 ustensiles_requis:
   - casserole
   - poele
@@ -65,7 +64,7 @@ Seul ajout : une poignée de petits pois surgelés. Ils apportent des folates, s
 | ingredient_id | quantité | unité | optionnel | substituts |
 |---|---|---|---|---|
 | `coquillettes` | 240 | g | non | `pates-courtes` |
-| `lardons-fumes` | 120 | g | non | `dés-de-jambon` |
+| `lardons-fumes` | 120 | g | non | `des-de-jambon` |
 | `creme-fraiche-epaisse` | 200 | ml | non | `creme-liquide` |
 | `petits-pois-surgeles` | 150 | g | non | — |
 | `paprika` | 2 | g | non | — |

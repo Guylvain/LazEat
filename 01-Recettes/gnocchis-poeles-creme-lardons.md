@@ -28,7 +28,6 @@ duree_conservation_frigo: 1
 bon_froid: false
 transportable: false
 registre: quotidien
-roles_a_deux: null
 ustensiles_requis:
   - poele
 
@@ -59,7 +58,7 @@ Point technique : les gnocchis du commerce ne se cuisent **pas** à l'eau. Direc
 | ingredient_id | quantité | unité | optionnel | substituts |
 |---|---|---|---|---|
 | `gnocchis-frais` | 500 | g | non | — |
-| `lardons-fumes` | 120 | g | non | `dés-de-jambon` |
+| `lardons-fumes` | 120 | g | non | `des-de-jambon` |
 | `creme-fraiche-epaisse` | 150 | ml | non | `creme-liquide` |
 | `petits-pois-surgeles` | 120 | g | oui | `epinards-surgeles` |
 | `paprika` | 2 | g | non | — |

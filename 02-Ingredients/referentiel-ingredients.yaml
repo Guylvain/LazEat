@@ -1652,6 +1652,38 @@ ingredients:
   statut_personnel: neutre
   substituts: [persil]
 
+- id: agneau-emince
+  nom: Agneau émincé
+  categorie: proteine
+  rayon: boucherie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 400
+  emplacement: frigo
+  duree_conservation: 2
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: neutre
+  substituts: [filets-poulet]
+
+- id: basilic-frais
+  nom: Basilic frais
+  categorie: epice
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 20
+  emplacement: frigo
+  duree_conservation: 5
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [origan-seche, menthe-fraiche]
+
 # ─── Ingrédients apparaissant uniquement comme substituts ───
 # À compléter si tu les utilises réellement. Laissés minimaux.
 

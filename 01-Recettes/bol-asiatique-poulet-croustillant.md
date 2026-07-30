@@ -73,7 +73,7 @@ Remplacement des commandes chez Asian Food by BAZE — poulet croustillant, sauc
 | `mayonnaise` | 60 | g | non | `yaourt-grec` |
 | `sriracha` | 20 | g | non | `harissa` |
 | `sauce-soja` | 30 | ml | non | — |
-| `miel-ou-sirop-erable` | 15 | g | oui | — |
+| `sirop-erable` | 15 | g | oui | — |
 | `huile-tournesol` | 40 | ml | non | — |
 | `graines-sesame` | 8 | g | oui | — |
 
@@ -87,7 +87,7 @@ Tailler `{concombre}` en demi-lunes, `{carotte}` en julienne, `{chou-rouge}` en 
 ### 2. Sauce dynamite
 `minuteur: 120`
 
-Mélanger `{mayonnaise}`, `{sriracha}` et `{miel-ou-sirop-erable}`. Goûter et ajuster le piquant.
+Mélanger `{mayonnaise}`, `{sriracha}` et `{sirop-erable}`. Goûter et ajuster le piquant.
 
 ### 3. Enrober le poulet
 `minuteur: 300`
