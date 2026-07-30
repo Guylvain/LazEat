@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planning alimentaire — semaine type</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E8E6DF;
+    --ink:#14342B;
+    --chalk:#FBFAF7;
+    --ochre:#D4A017;
+    --slate:#6E7A72;
+    --line:#C9C5B8;
+    --start:6.5;
+    --end:23.5;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Karla',system-ui,sans-serif;
+    font-feature-settings:'tnum' 1;
+    line-height:1.45;
+    padding:0 0 64px;
+  }
+
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px}
+
+  /* ---------- header ---------- */
+
+  header.masthead{
+    border-bottom:2px solid var(--ink);
+    padding:34px 0 18px;
+    margin-bottom:0;
+  }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--slate);
+    margin-bottom:10px;
+  }
+  h1.title{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:clamp(38px,11vw,66px);
+    line-height:.86;
+    letter-spacing:-.01em;
+  }
+  h1.title em{
+    font-style:normal;
+    display:block;
+    color:var(--ochre);
+  }
+  .standfirst{
+    margin-top:16px;
+    max-width:46ch;
+    font-size:15px;
+    color:var(--slate);
+  }
+
+  /* ---------- tabs ---------- */
+
+  .switch{
+    display:flex;
+    gap:0;
+    margin:22px 0 0;
+    border:2px solid var(--ink);
+  }
+  .switch button{
+    flex:1;
+    background:transparent;
+    border:0;
+    border-right:2px solid var(--ink);
+    color:var(--ink);
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    font-size:clamp(13px,3.4vw,17px);
+    letter-spacing:.03em;
+    padding:13px 8px 11px;
+    cursor:pointer;
+    line-height:1.1;
+  }
+  .switch button:last-child{border-right:0}
+  .switch button[aria-selected="true"]{
+    background:var(--ink);
+    color:var(--chalk);
+  }
+  .switch button:focus-visible{
+    outline:3px solid var(--ochre);
+    outline-offset:-6px;
+  }
+
+  .weekmeta{
+    font-size:13px;
+    color:var(--slate);
+    padding:14px 0 4px;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* ---------- legend ---------- */
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    padding:14px 0 22px;
+    font-size:11.5px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--slate);
+    font-weight:600;
+  }
+  .legend span{display:flex;align-items:center;gap:7px}
+  .key{width:16px;height:9px;display:block;flex:none}
+  .key.work{background:var(--slate)}
+  .key.tele{background:repeating-linear-gradient(135deg,var(--slate) 0 3px,transparent 3px 6px);border:1px solid var(--slate)}
+  .key.move{background:var(--line)}
+  .key.play{background:var(--ink)}
+  .key.coach{background:repeating-linear-gradient(135deg,var(--ink) 0 3px,transparent 3px 6px);border:1px solid var(--ink)}
+  .key.gym{background:repeating-linear-gradient(45deg,var(--ink) 0 2px,transparent 2px 5px);border:1px solid var(--ink)}
+  .key.meal{width:11px;height:11px;border-radius:50%;background:var(--ochre)}
+
+  /* ---------- day ---------- */
+
+  .day{
+    padding:26px 0 24px;
+    border-bottom:1px solid var(--line);
+  }
+  .day:last-child{border-bottom:0}
+
+  .dayhead{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:4px;
+  }
+  .dayname{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    font-size:26px;
+    letter-spacing:.01em;
+    line-height:1;
+  }
+  .daynote{
+    font-size:13px;
+    color:var(--slate);
+  }
+  .flag{
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    background:var(--ochre);
+    color:var(--ink);
+    padding:3px 8px 2px;
+  }
+  .flag.quiet{background:transparent;color:var(--slate);border:1px solid var(--line)}
+
+  /* ---------- the clock strip ---------- */
+
+  .clock{
+    position:relative;
+    height:34px;
+    margin:16px 0 6px;
+    background:var(--chalk);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .clock::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(
+      to right,
+      var(--line) 0 1px,
+      transparent 1px calc(100% / 17)
+    );
+    opacity:.55;
+  }
+  .blk{
+    position:absolute;
+    top:7px;
+    height:20px;
+  }
+  .blk.work{background:var(--slate)}
+  .blk.tele{background:repeating-linear-gradient(135deg,var(--slate) 0 3px,transparent 3px 6px);border:1px solid var(--slate)}
+  .blk.move{background:var(--line)}
+  .blk.play{background:var(--ink)}
+  .blk.coach{background:repeating-linear-gradient(135deg,var(--ink) 0 3px,transparent 3px 6px);border:1px solid var(--ink)}
+  .blk.gym{background:repeating-linear-gradient(45deg,var(--ink) 0 2px,transparent 2px 5px);border:1px solid var(--ink)}
+
+  .pin{
+    position:absolute;
+    top:2px;
+    width:11px;
+    height:11px;
+    margin-left:-5.5px;
+    border-radius:50%;
+    background:var(--ochre);
+    border:2px solid var(--paper);
+    z-index:2;
+  }
+  .pin.stem::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:9px;
+    width:1px;
+    height:23px;
+    margin-left:-.5px;
+    background:var(--ochre);
+  }
+
+  .ruler{
+    position:relative;
+    height:14px;
+    font-size:10px;
+    color:var(--slate);
+    letter-spacing:.04em;
+  }
+  .ruler b{position:absolute;font-weight:600;transform:translateX(-50%)}
+
+  /* ---------- meal list ---------- */
+
+  ol.meals{list-style:none;margin-top:14px}
+  ol.meals li{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:0 14px;
+    padding:9px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  ol.meals li:first-child{border-top:1px solid var(--ink)}
+  .mtime{
+    font-family:'Anton',sans-serif;
+    font-size:16px;
+    letter-spacing:.02em;
+    padding-top:2px;
+  }
+  .mbody strong{
+    display:block;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:-.005em;
+  }
+  .mbody span{
+    display:block;
+    font-size:13.5px;
+    color:var(--slate);
+    margin-top:2px;
+  }
+  li.anchor .mtime{color:var(--ochre)}
+  li.anchor .mbody strong::after{
+    content:"pilier";
+    display:inline-block;
+    margin-left:8px;
+    vertical-align:2px;
+    font-family:'Karla',sans-serif;
+    font-size:9.5px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+
+  footer.note{
+    margin-top:30px;
+    padding-top:20px;
+    border-top:2px solid var(--ink);
+    font-size:13.5px;
+    color:var(--slate);
+    max-width:56ch;
+  }
+  footer.note b{color:var(--ink)}
+
+  @media (max-width:420px){
+    .dayname{font-size:22px}
+    ol.meals li{grid-template-columns:48px 1fr;gap:0 10px}
+    .mtime{font-size:14px}
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .day{animation:rise .32s ease both}
+    @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Alternance · Rugby 4 soirs · Programme alimentaire</p>
+    <h1 class="title">Manger<em>entre les blocs</em></h1>
+    <p class="standfirst">Chaque journée est lue comme une horloge de 7h à 23h30. Les barres sont ce qui est déjà pris. Les points dorés sont les créneaux où tu manges — ce sont eux qui tiennent la semaine.</p>
+  </header>
+
+  <div class="switch" role="tablist" aria-label="Type de semaine">
+    <button role="tab" id="tab-cours" aria-controls="panel" aria-selected="true" data-week="cours">Semaine de cours</button>
+    <button role="tab" id="tab-alt" aria-controls="panel" aria-selected="false" data-week="alt">Semaine d'alternance</button>
+  </div>
+
+  <p class="weekmeta" id="weekmeta"></p>
+
+  <div class="legend">
+    <span><i class="key work"></i>École / entreprise</span>
+    <span><i class="key tele"></i>Télétravail</span>
+    <span><i class="key move"></i>Trajet</span>
+    <span><i class="key play"></i>Tu t'entraînes</span>
+    <span><i class="key coach"></i>Tu encadres</span>
+    <span><i class="key gym"></i>Salle de sport</span>
+    <span><i class="key meal"></i>Repas</span>
+  </div>
+
+  <div id="panel" role="tabpanel" aria-labelledby="tab-cours"></div>
+
+  <footer class="note">
+    <p><b>Les trois piliers.</b> Le déjeuner de 12h30 est ton vrai repas de la journée — c'est le seul créneau fiable des cinq jours. La collation d'avant-entraînement n'est pas du grignotage, c'est ton carburant de séance. Le repas d'après-entraînement se réchauffe, il ne se cuisine pas.</p>
+    <p style="margin-top:12px"><b>Deux soirs aux fourneaux.</b> Mercredi tu cuisines pour 3-4 portions, jeudi tu cuisines en doublant les quantités. Ces deux soirs nourrissent les quatre autres.</p>
+    <p style="margin-top:12px"><b>Salle de sport.</b> Mercredi et vendredi matin en semaine d'alternance. Les deux repas qui l'encadrent sont des piliers : une collation courte avant, un vrai petit-déj après. Le créneau de 9h45 est l'un des rares moments de la semaine où tu es chez toi, reposé, avec le temps de cuisiner.</p>
+    <p style="margin-top:12px"><b>Semaines de cours : à définir.</b> Les créneaux de salle ne sont pas encore fixés. Cours de 9h10 à 17h10 laisse deux options — tôt le matin sur le même modèle, ou en fin de journée les mercredis, seul soir sans rugby.</p>
+  </footer>
+
+</div>
+
+<script>
+const S = 6.5, E = 23.5, SPAN = E - S;
+const pos = h => ((h - S) / SPAN) * 100;
+
+const B = (s, e, type) => ({s, e, type});
+const M = (t, title, detail, anchor) => ({t, title, detail, anchor});
+
+const WEEKS = {
+  cours: {
+    meta: "École 9h10 – 17h10 du lundi au vendredi. Déjeuner sur place ou au CROUS, retour vers 17h50.",
+    days: [
+      { name:"Lundi", note:"Entraînement 20h – 22h",
+        blocks:[B(8.33,9.17,'move'),B(9.17,17.17,'work'),B(17.17,17.83,'move'),B(20,22,'play'),B(22,22.5,'move')],
+        meals:[
+          M(7.75,"Petit-déj minimal","Yaourt + banane + poignée de noix. 90 secondes debout, mais tu le fais."),
+          M(12.5,"Déjeuner complet","Plat chaud, pas un sandwich mou. Restes du batch ou repas CROUS correct.",true),
+          M(18.5,"Collation avant rugby","2 tartines + jambon ou beurre de cacahuète + 1 banane.",true),
+          M(22.5,"Batch réchauffé","Curry, chili ou lentilles préparés mercredi. 4 minutes au micro-ondes.")
+        ]},
+      { name:"Mardi", note:"Cadets 19h – 20h30, puis ta séance 20h30 – 22h", flag:"Jour critique",
+        blocks:[B(8.33,9.17,'move'),B(9.17,17.17,'work'),B(17.17,18.5,'move'),B(19,20.5,'coach'),B(20.5,22,'play'),B(22,22.5,'move')],
+        meals:[
+          M(7.75,"Petit-déj minimal","Le sauter aujourd'hui, c'est finir ta séance à plat."),
+          M(12.5,"Déjeuner complet","Charge en glucides : riz, pâtes, pommes de terre. Tu as 3h30 de club ce soir.",true),
+          M(17.5,"Collation dans le trajet","Préparée le matin. Tartines + jambon + banane. Se mange debout.",true),
+          M(20.25,"Recharge express","Entre l'encadrement et ta séance : abricots secs, compote à boire, barre de céréales.",true),
+          M(22.5,"Poêlée express","Riz + légumes surgelés + œufs + thon. 10 minutes chrono.")
+        ]},
+      { name:"Mercredi", note:"Soirée libre", flag:"Batch cooking", 
+        blocks:[B(8.33,9.17,'move'),B(9.17,17.17,'work'),B(17.17,17.83,'move')],
+        meals:[
+          M(7.75,"Petit-déj minimal","Yaourt, fruit, noix."),
+          M(12.5,"Déjeuner complet","Plat chaud.",true),
+          M(19,"Tu cuisines pour la semaine","Curry de pois chiches, chili ou grosse poêlée de lentilles. Vise 3 à 4 portions : elles couvrent lundi, jeudi et dimanche.",true)
+        ]},
+      { name:"Jeudi", note:"Cadets 19h – 20h30, retour vers 21h", flag:"Soir cuisine",
+        blocks:[B(8.33,9.17,'move'),B(9.17,17.17,'work'),B(17.17,18.5,'move'),B(19,20.5,'coach'),B(20.5,21,'move')],
+        meals:[
+          M(7.75,"Petit-déj minimal","Yaourt, fruit, noix."),
+          M(12.5,"Déjeuner complet","Plat chaud.",true),
+          M(17.75,"Collation légère","Tu encadres, tu ne joues pas : yaourt + compote + amandes suffisent."),
+          M(21.25,"Vrai repas cuisiné","Tu as 20-30 minutes. Sardines-patates, lentilles-épinards-œuf. Double les quantités pour vendredi.",true)
+        ]},
+      { name:"Vendredi", note:"Entraînement 20h – 22h",
+        blocks:[B(8.33,9.17,'move'),B(9.17,17.17,'work'),B(17.17,17.83,'move'),B(20,22,'play'),B(22,22.5,'move')],
+        meals:[
+          M(7.75,"Petit-déj minimal","Yaourt, fruit, noix."),
+          M(12.5,"Déjeuner complet","Plat chaud.",true),
+          M(18.5,"Collation avant rugby","Tartines + fromage blanc, ou pain + miel + banane.",true),
+          M(22.5,"Restes de jeudi","Tu as doublé hier, tu n'as rien à faire ce soir.")
+        ]},
+      { name:"Samedi", note:"Journée libre", flag:"Repas libres", flagQuiet:true,
+        blocks:[],
+        meals:[
+          M(10,"Petit-déj tranquille","Le seul de la semaine où tu peux t'asseoir. Œufs, pain, fruits."),
+          M(13,"Déjeuner","Ce que tu veux."),
+          M(20,"Dîner libre","Pizza, resto, sortie. C'est prévu au programme, pas un écart.")
+        ]},
+      { name:"Dimanche", note:"Match 13h – 19h en semaine de match",
+        blocks:[B(12.5,13,'move'),B(13,19,'play'),B(19,19.5,'move')],
+        meals:[
+          M(8.5,"Petit-déj","Complet : pain, œufs, fruit."),
+          M(11,"Repas d'avant-match","Pâtes ou riz, deux heures avant. Peu de gras, peu de fibres.",true),
+          M(16,"Collation dans le sac","Barre + fruits secs + eau. Six heures au club, tu ne tiens pas à sec."),
+          M(19.5,"Batch au retour","Prêt dans le frigo depuis mercredi. Protéines dans l'heure qui suit.",true)
+        ]}
+    ]
+  },
+
+  alt: {
+    meta: "Entreprise lundi, mardi, jeudi 9h30 – 17h30 avec 1h de trajet. Télétravail mercredi et vendredi.",
+    days: [
+      { name:"Lundi", note:"Entreprise + entraînement 20h – 22h",
+        blocks:[B(8.5,9.5,'move'),B(9.5,17.5,'work'),B(17.5,18.5,'move'),B(20,22,'play'),B(22,22.5,'move')],
+        meals:[
+          M(7.5,"Petit-déj minimal","Départ tôt : prépare-le la veille si besoin."),
+          M(12.5,"Déjeuner complet","Gamelle du batch de mercredi, ou cantine. Un vrai plat.",true),
+          M(18.75,"Collation avant rugby","Tu rentres à 18h30, tu repars à 19h45. Tartines + banane.",true),
+          M(22.5,"Batch réchauffé","4 minutes au micro-ondes.")
+        ]},
+      { name:"Mardi", note:"Entreprise, cadets 19h – 20h30, ta séance 20h30 – 22h", flag:"Jour critique",
+        blocks:[B(8.5,9.5,'move'),B(9.5,17.5,'work'),B(17.5,18.5,'move'),B(19,20.5,'coach'),B(20.5,22,'play'),B(22,22.5,'move')],
+        meals:[
+          M(7.5,"Petit-déj minimal","Non négociable aujourd'hui."),
+          M(12.5,"Déjeuner complet","Le plus gros repas de ta semaine. 14 heures vont séparer ce plat du prochain vrai repas.",true),
+          M(17.5,"Collation dans le trajet","Préparée le matin, mangée dans les transports. Tu n'auras pas d'autre fenêtre.",true),
+          M(20.25,"Recharge express","Toujours dans le sac : abricots secs, compote, barre. Tu bascules de l'encadrement à ta séance.",true),
+          M(22.5,"Poêlée express","10 minutes. Riz, légumes surgelés, œufs, thon.")
+        ]},
+      { name:"Mercredi", note:"Salle 7h – 9h30, puis télétravail", flag:"Batch cooking",
+        blocks:[B(6.9,7.4,'move'),B(7.4,9.5,'gym'),B(9.5,9.9,'move'),B(10,18,'tele')],
+        meals:[
+          M(6.75,"Avant la salle","Banane + poignée d'abricots secs. Léger, avalé en 2 minutes. Partir totalement à jeun sur 2h de séance, c'est de la fonte musculaire.",true),
+          M(9.9,"Petit-déj complet","Tu rentres de 2h d'effort et tu es chez toi : c'est ton vrai petit-déj de la semaine. Omelette garnie, pain, fruit.",true),
+          M(13,"Déjeuner cuisiné","Ton meilleur créneau de cuisine en journée.",true),
+          M(19,"Tu cuisines pour la semaine","3 à 4 portions minimum. Ce plat nourrit jeudi, dimanche et lundi prochain.",true)
+        ]},
+      { name:"Jeudi", note:"Entreprise, cadets 19h – 20h30, retour vers 21h", flag:"Soir cuisine",
+        blocks:[B(8.5,9.5,'move'),B(9.5,17.5,'work'),B(17.5,18.5,'move'),B(19,20.5,'coach'),B(20.5,21,'move')],
+        meals:[
+          M(7.5,"Petit-déj minimal","Yaourt, fruit, noix."),
+          M(12.5,"Déjeuner complet","Gamelle ou cantine.",true),
+          M(17.75,"Collation légère","Soirée d'encadrement, effort modéré. Compote + amandes."),
+          M(21.25,"Vrai repas cuisiné","20-30 minutes disponibles. Double les quantités : ça devient ton vendredi soir.",true)
+        ]},
+      { name:"Vendredi", note:"Salle 7h – 9h30, télétravail, rugby 20h – 22h", flag:"Grosse journée",
+        blocks:[B(6.9,7.4,'move'),B(7.4,9.5,'gym'),B(9.5,9.9,'move'),B(10,18,'tele'),B(20,22,'play'),B(22,22.5,'move')],
+        meals:[
+          M(6.75,"Avant la salle","Banane + abricots secs. Deux minutes.",true),
+          M(9.9,"Petit-déj complet","Salle le matin, rugby le soir : c'est ta journée la plus exigeante de la semaine. Ce repas n'est pas optionnel.",true),
+          M(13,"Déjeuner cuisiné","Charge en glucides. Il te reste une séance ce soir.",true),
+          M(18.5,"Collation avant rugby","Et sors ton plat du frigo pour ce soir pendant que tu y es.",true),
+          M(22.5,"Restes de jeudi","Réchauffage. Tu as cuisiné double hier.")
+        ]},
+      { name:"Samedi", note:"Journée libre", flag:"Repas libres", flagQuiet:true,
+        blocks:[],
+        meals:[
+          M(10,"Petit-déj tranquille","Œufs, pain, fruits."),
+          M(13,"Déjeuner","Ce que tu veux."),
+          M(20,"Dîner libre","Pizza, resto, sortie. Prévu au programme.")
+        ]},
+      { name:"Dimanche", note:"Match 13h – 19h en semaine de match",
+        blocks:[B(12.5,13,'move'),B(13,19,'play'),B(19,19.5,'move')],
+        meals:[
+          M(8.5,"Petit-déj","Complet : pain, œufs, fruit."),
+          M(11,"Repas d'avant-match","Pâtes ou riz, deux heures avant le coup d'envoi.",true),
+          M(16,"Collation dans le sac","Barre + fruits secs + 1,5 L d'eau minimum."),
+          M(19.5,"Batch au retour","Protéines et glucides dans l'heure. Rien à cuisiner.",true)
+        ]}
+    ]
+  }
+};
+
+const fmt = h => {
+  const H = Math.floor(h), m = Math.round((h - H) * 60);
+  return m === 0 ? H + "h" : H + "h" + String(m).padStart(2, "0");
+};
+
+function render(key){
+  const wk = WEEKS[key];
+  document.getElementById('weekmeta').textContent = wk.meta;
+
+  document.getElementById('panel').innerHTML = wk.days.map((d, i) => {
+    const blocks = d.blocks.map(b =>
+      `<i class="blk ${b.type}" style="left:${pos(b.s)}%;width:${pos(b.e) - pos(b.s)}%"></i>`).join("");
+
+    const pins = d.meals.map(m =>
+      `<i class="pin stem" style="left:${pos(m.t)}%"></i>`).join("");
+
+    const ticks = [7, 10, 13, 16, 19, 22].map(h =>
+      `<b style="left:${pos(h)}%">${h}h</b>`).join("");
+
+    const flag = d.flag
+      ? `<span class="flag${d.flagQuiet ? ' quiet' : ''}">${d.flag}</span>` : "";
+
+    const meals = d.meals.map(m =>
+      `<li class="${m.anchor ? 'anchor' : ''}">
+         <span class="mtime">${fmt(m.t)}</span>
+         <span class="mbody"><strong>${m.title}</strong><span>${m.detail}</span></span>
+       </li>`).join("");
+
+    return `<section class="day" style="animation-delay:${i * 35}ms">
+      <div class="dayhead">
+        <h2 class="dayname">${d.name}</h2>
+        <p class="daynote">${d.note}</p>
+        ${flag}
+      </div>
+      <div class="clock">${blocks}${pins}</div>
+      <div class="ruler">${ticks}</div>
+      <ol class="meals">${meals}</ol>
+    </section>`;
+  }).join("");
+}
+
+document.querySelectorAll('.switch button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.switch button').forEach(b =>
+      b.setAttribute('aria-selected', String(b === btn)));
+    document.getElementById('panel').setAttribute('aria-labelledby', btn.id);
+    render(btn.dataset.week);
+  });
+});
+
+render('cours');
+</script>
+</body>
+</html>

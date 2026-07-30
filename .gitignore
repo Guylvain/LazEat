@@ -1,0 +1,19 @@
+﻿# Obsidian — état local de l'interface, propre à chaque machine
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Développement (utile plus tard, quand l'app arrivera)
+node_modules/
+dist/
+.env
+.env.local
+
+# Fichiers temporaires
+*.tmp
+*~
