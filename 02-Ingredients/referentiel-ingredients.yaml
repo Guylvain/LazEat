@@ -1,0 +1,1852 @@
+# Référentiel d'ingrédients — LazEat
+# Généré depuis les 31 recettes du socle.
+# Les valeurs sont PRÉ-REMPLIES avec des estimations : relis et corrige.
+# Le champ à vérifier en priorité est `conditionnement` (format que TU achètes).
+
+ingredients:
+- id: riz-basmati
+  nom: Riz basmati
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [riz-long-grain]
+
+- id: riz-arborio
+  nom: Riz arborio
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: neutre
+  substituts: [riz-carnaroli]
+
+- id: pates-courtes
+  nom: Pâtes courtes
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [spaghetti]
+
+- id: coquillettes
+  nom: Coquillettes
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [pates-courtes]
+
+- id: gnocchis-frais
+  nom: Gnocchis frais
+  categorie: feculent
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: frigo
+  duree_conservation: 10
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: []
+
+- id: pommes-de-terre
+  nom: Pommes de terre
+  categorie: feculent
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 2500
+  emplacement: placard
+  duree_conservation: 30
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: []
+
+- id: pommes-grenailles
+  nom: Pommes grenailles
+  categorie: feculent
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 750
+  emplacement: placard
+  duree_conservation: 21
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [pommes-de-terre-rattes]
+
+- id: flocons-avoine
+  nom: Flocons d'avoine
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: neutre
+  substituts: []
+
+- id: farine-t65
+  nom: Farine T65
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: neutre
+  substituts: [farine-t55, farine-00]
+
+- id: maizena
+  nom: Maïzena
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 400
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [farine-t65]
+
+- id: chapelure
+  nom: Chapelure
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: neutre
+  substituts: [corn-flakes-ecrases]
+
+- id: pain-complet
+  nom: Pain complet (tranche)
+  categorie: feculent
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 35
+  conditionnement: 20
+  emplacement: placard
+  duree_conservation: 6
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [pain-levain]
+
+- id: pain-burger
+  nom: Pain à burger
+  categorie: feculent
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 60
+  conditionnement: 4
+  emplacement: placard
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: []
+
+- id: pain-ciabatta
+  nom: Pain ciabatta
+  categorie: feculent
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 100
+  conditionnement: 2
+  emplacement: placard
+  duree_conservation: 4
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [paton-pizza]
+
+- id: tortillas-ble
+  nom: Tortillas de blé
+  categorie: feculent
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 40
+  conditionnement: 8
+  emplacement: placard
+  duree_conservation: 30
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [tortillas-mais, pain-pita]
+
+- id: pates-gyoza
+  nom: Pâtes à gyoza
+  categorie: feculent
+  rayon: frais
+  unite_base: piece
+  poids_moyen_piece: 6
+  conditionnement: 40
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: a-tester
+  substituts: []
+
+- id: paton-pizza
+  nom: Pâton de pizza
+  categorie: feculent
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 255
+  conditionnement: 4
+  emplacement: congelateur
+  duree_conservation: 90
+  suivi_stock: precis
+  provenance: produit
+  produit_par: pate-a-pizza-maison
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: []
+
+- id: riz-cuit
+  nom: Riz cuit
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 1500
+  emplacement: frigo
+  duree_conservation: 3
+  suivi_stock: precis
+  provenance: produit
+  produit_par: riz-cuit-en-quantite
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [semoule-cuite, pates-cuites]
+
+- id: pois-chiches-conserve
+  nom: Pois chiches en conserve
+  categorie: legumineuse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 400
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates, proteines]
+  statut_personnel: aime
+  substituts: [haricots-blancs, lentilles-corail]
+
+- id: haricots-rouges-conserve
+  nom: Haricots rouges en conserve
+  categorie: legumineuse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 400
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates, proteines]
+  statut_personnel: aime
+  substituts: [haricots-noirs]
+
+- id: lentilles-corail
+  nom: Lentilles corail
+  categorie: legumineuse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates, proteines]
+  statut_personnel: aime
+  substituts: [lentilles-vertes]
+
+- id: petits-pois-surgeles
+  nom: Petits pois surgelés
+  categorie: legumineuse
+  rayon: surgele
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 750
+  emplacement: congelateur
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates]
+  statut_personnel: aime
+  substituts: []
+
+- id: filets-poulet
+  nom: Filets de poulet
+  categorie: proteine
+  rayon: boucherie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: frigo
+  duree_conservation: 3
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [hauts-de-cuisse-desosses]
+
+- id: boeuf-hache-5
+  nom: Bœuf haché 5%
+  categorie: proteine
+  rayon: boucherie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: frigo
+  duree_conservation: 2
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [dinde-hachee]
+
+- id: boeuf-hache-15
+  nom: Bœuf haché 15%
+  categorie: proteine
+  rayon: boucherie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 400
+  emplacement: frigo
+  duree_conservation: 2
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [boeuf-hache-5]
+
+- id: faux-filet
+  nom: Faux-filet
+  categorie: proteine
+  rayon: boucherie
+  unite_base: piece
+  poids_moyen_piece: 180
+  conditionnement: 2
+  emplacement: frigo
+  duree_conservation: 4
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [entrecote, bavette]
+
+- id: porc-hache
+  nom: Porc haché
+  categorie: proteine
+  rayon: boucherie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: frigo
+  duree_conservation: 2
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: neutre
+  substituts: [poulet-hache, boeuf-hache-5]
+
+- id: lardons-fumes
+  nom: Lardons fumés
+  categorie: proteine
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [des-de-jambon]
+
+- id: jambon-blanc
+  nom: Jambon blanc
+  categorie: proteine
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: frigo
+  duree_conservation: 5
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [blanc-de-poulet]
+
+- id: pepperoni
+  nom: Pepperoni
+  categorie: proteine
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 100
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [chorizo, salami-piquant]
+
+- id: oeufs
+  nom: Œufs
+  categorie: proteine
+  rayon: frais
+  unite_base: piece
+  poids_moyen_piece: 60
+  conditionnement: 6
+  emplacement: frigo
+  duree_conservation: 21
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: neutre
+  substituts: []
+
+- id: thon-conserve-naturel
+  nom: Thon au naturel
+  categorie: proteine
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 140
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [sardines-conserve]
+
+- id: sardines-conserve
+  nom: Sardines en conserve
+  categorie: proteine
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 120
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [omega-3, proteines]
+  statut_personnel: a-tester
+  substituts: [maquereaux-conserve]
+
+- id: ail
+  nom: Ail (gousse)
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 5
+  conditionnement: 12
+  emplacement: placard
+  duree_conservation: 60
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: oignon
+  nom: Oignon
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 150
+  conditionnement: 6
+  emplacement: placard
+  duree_conservation: 30
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [echalote]
+
+- id: oignon-rouge
+  nom: Oignon rouge
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 150
+  conditionnement: 3
+  emplacement: placard
+  duree_conservation: 30
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [echalote]
+
+- id: echalote
+  nom: Échalote
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 30
+  conditionnement: 8
+  emplacement: placard
+  duree_conservation: 30
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [oignon-rouge]
+
+- id: ciboule
+  nom: Ciboule
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 15
+  conditionnement: 6
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [oignon-nouveau]
+
+- id: gingembre-frais
+  nom: Gingembre frais
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 100
+  emplacement: frigo
+  duree_conservation: 21
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [gingembre-moulu]
+
+- id: carotte
+  nom: Carotte
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 120
+  conditionnement: 8
+  emplacement: frigo
+  duree_conservation: 21
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: poivron-rouge
+  nom: Poivron rouge
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 180
+  conditionnement: 1
+  emplacement: frigo
+  duree_conservation: 10
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: concombre
+  nom: Concombre
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 300
+  conditionnement: 1
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: tomates-grappe
+  nom: Tomates grappe
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 120
+  conditionnement: 5
+  emplacement: corbeille-fruits
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: tomates-cerises
+  nom: Tomates cerises
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [tomates-grappe]
+
+- id: champignons-de-paris
+  nom: Champignons de Paris
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: frigo
+  duree_conservation: 5
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [champignons-melange]
+
+- id: chou-chinois
+  nom: Chou chinois
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: frigo
+  duree_conservation: 10
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates]
+  statut_personnel: a-tester
+  substituts: [chou-blanc]
+
+- id: chou-rouge
+  nom: Chou rouge
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: salade-romaine
+  nom: Salade romaine
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: frigo
+  duree_conservation: 5
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates]
+  statut_personnel: aime
+  substituts: [laitue]
+
+- id: salade-verte
+  nom: Salade verte
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 150
+  emplacement: frigo
+  duree_conservation: 4
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates]
+  statut_personnel: aime
+  substituts: [mache]
+
+- id: roquette
+  nom: Roquette
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 125
+  emplacement: frigo
+  duree_conservation: 4
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates]
+  statut_personnel: aime
+  substituts: [mache]
+
+- id: legumes-surgeles-melange
+  nom: Mélange de légumes surgelés
+  categorie: legume
+  rayon: surgele
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 750
+  emplacement: congelateur
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: cornichons
+  nom: Cornichons
+  categorie: legume
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 350
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: olives-noires
+  nom: Olives noires
+  categorie: legume
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: tomates-concassees
+  nom: Tomates concassées
+  categorie: legume
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 400
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [coulis-tomate]
+
+- id: concentre-tomate
+  nom: Concentré de tomate
+  categorie: legume
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 140
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: banane
+  nom: Banane
+  categorie: fruit
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 120
+  conditionnement: 5
+  emplacement: corbeille-fruits
+  duree_conservation: 6
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: []
+
+- id: citron
+  nom: Citron
+  categorie: fruit
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 100
+  conditionnement: 4
+  emplacement: frigo
+  duree_conservation: 21
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates]
+  statut_personnel: aime
+  substituts: [citron-vert]
+
+- id: abricots-secs
+  nom: Abricots secs
+  categorie: fruit
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [dattes, raisins-secs]
+
+- id: huile-olive
+  nom: Huile d'olive
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 750
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: huile-tournesol
+  nom: Huile de tournesol
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: huile-sesame
+  nom: Huile de sésame
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: beurre-demi-sel
+  nom: Beurre demi-sel
+  categorie: matiere-grasse
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: frigo
+  duree_conservation: 30
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [beurre-doux]
+
+- id: noix
+  nom: Noix
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [omega-3]
+  statut_personnel: aime
+  substituts: [amandes, noisettes]
+
+- id: graines-sesame
+  nom: Graines de sésame
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 100
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: beurre-cacahuete
+  nom: Beurre de cacahuète
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 350
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: []
+
+- id: mozzarella
+  nom: Mozzarella
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 125
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [burrata]
+
+- id: parmesan
+  nom: Parmesan
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 100
+  emplacement: frigo
+  duree_conservation: 60
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [comte]
+
+- id: comte
+  nom: Comté
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: frigo
+  duree_conservation: 30
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: []
+
+- id: cheddar
+  nom: Cheddar
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: frigo
+  duree_conservation: 30
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [raclette]
+
+- id: fromage-rape
+  nom: Fromage râpé
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [cheddar]
+
+- id: feta
+  nom: Feta
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: neutre
+  substituts: [mozzarella]
+
+- id: buche-chevre
+  nom: Bûche de chèvre
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 180
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: []
+
+- id: reblochon
+  nom: Reblochon
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [raclette, comte]
+
+- id: creme-fraiche-epaisse
+  nom: Crème fraîche épaisse
+  categorie: laitier
+  rayon: frais
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [creme-liquide]
+
+- id: yaourt-grec
+  nom: Yaourt grec
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [fromage-blanc, skyr]
+
+- id: fromage-blanc
+  nom: Fromage blanc
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [yaourt-grec]
+
+- id: lait
+  nom: Lait
+  categorie: laitier
+  rayon: frais
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [lait-amande]
+
+- id: sauce-soja
+  nom: Sauce soja
+  categorie: placard
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: sriracha
+  nom: Sriracha
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [harissa]
+
+- id: mayonnaise
+  nom: Mayonnaise
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: frigo
+  duree_conservation: 60
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [yaourt-grec]
+
+- id: ketchup
+  nom: Ketchup
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 300
+  emplacement: frigo
+  duree_conservation: 90
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: sauce-blanche
+  nom: Sauce blanche
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 300
+  emplacement: frigo
+  duree_conservation: 30
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: vinaigre-riz
+  nom: Vinaigre de riz
+  categorie: placard
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: sirop-erable
+  nom: Sirop d'érable
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [miel]
+
+- id: miel
+  nom: Miel
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: exclu
+  substituts: [sirop-erable]
+
+- id: bouillon-legumes
+  nom: Bouillon de légumes
+  categorie: placard
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [bouillon-volaille]
+
+- id: vin-blanc-sec
+  nom: Vin blanc sec
+  categorie: placard
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 750
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: levure-boulangere-seche
+  nom: Levure boulangère sèche
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 5
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [levure-boulangere-fraiche]
+
+- id: lait-coco
+  nom: Lait de coco
+  categorie: placard
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 400
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: eau
+  nom: Eau
+  categorie: placard
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 0
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: ignore
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: sel-fin
+  nom: Sel fin
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: poivre-noir
+  nom: Poivre noir
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 50
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: paprika
+  nom: Paprika
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 45
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: cumin-moulu
+  nom: Cumin moulu
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 40
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: curry-poudre
+  nom: Curry en poudre
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 45
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: curcuma
+  nom: Curcuma
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 40
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: cannelle
+  nom: Cannelle
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 40
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: ail-poudre
+  nom: Ail en poudre
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 45
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+- id: origan-seche
+  nom: Origan séché
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 15
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [herbes-provence]
+
+- id: thym-seche
+  nom: Thym séché
+  categorie: epice
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 15
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [herbes-provence]
+
+- id: menthe-fraiche
+  nom: Menthe fraîche
+  categorie: epice
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 20
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: []
+
+- id: persil
+  nom: Persil
+  categorie: epice
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 30
+  emplacement: frigo
+  duree_conservation: 5
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [coriandre-fraiche]
+
+- id: coriandre-fraiche
+  nom: Coriandre fraîche
+  categorie: epice
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 20
+  emplacement: frigo
+  duree_conservation: 5
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [persil]
+
+# ─── Ingrédients apparaissant uniquement comme substituts ───
+# À compléter si tu les utilises réellement. Laissés minimaux.
+
+- id: amandes
+  nom: Amandes
+  a_completer: true
+
+- id: bavette
+  nom: Bavette
+  a_completer: true
+
+- id: beurre-doux
+  nom: Beurre doux
+  a_completer: true
+
+- id: blanc-de-poulet
+  nom: Blanc de poulet
+  a_completer: true
+
+- id: bouillon-volaille
+  nom: Bouillon volaille
+  a_completer: true
+
+- id: burrata
+  nom: Burrata
+  a_completer: true
+
+- id: champignons-melange
+  nom: Champignons melange
+  a_completer: true
+
+- id: chorizo
+  nom: Chorizo
+  a_completer: true
+
+- id: chou-blanc
+  nom: Chou blanc
+  a_completer: true
+
+- id: citron-vert
+  nom: Citron vert
+  a_completer: true
+
+- id: corn-flakes-ecrases
+  nom: Corn flakes ecrases
+  a_completer: true
+
+- id: coulis-tomate
+  nom: Coulis tomate
+  a_completer: true
+
+- id: creme-liquide
+  nom: Creme liquide
+  a_completer: true
+
+- id: dattes
+  nom: Dattes
+  a_completer: true
+
+- id: des-de-jambon
+  nom: Des de jambon
+  a_completer: true
+
+- id: dinde-hachee
+  nom: Dinde hachee
+  a_completer: true
+
+- id: entrecote
+  nom: Entrecote
+  a_completer: true
+
+- id: epinards-surgeles
+  nom: Epinards surgeles
+  a_completer: true
+
+- id: farine-00
+  nom: Farine 00
+  a_completer: true
+
+- id: farine-t55
+  nom: Farine t55
+  a_completer: true
+
+- id: gingembre-moulu
+  nom: Gingembre moulu
+  a_completer: true
+
+- id: haricots-blancs
+  nom: Haricots blancs
+  a_completer: true
+
+- id: haricots-noirs
+  nom: Haricots noirs
+  a_completer: true
+
+- id: harissa
+  nom: Harissa
+  a_completer: true
+
+- id: hauts-de-cuisse-desosses
+  nom: Hauts de cuisse desosses
+  a_completer: true
+
+- id: herbes-provence
+  nom: Herbes provence
+  a_completer: true
+
+- id: lait-amande
+  nom: Lait amande
+  a_completer: true
+
+- id: laitue
+  nom: Laitue
+  a_completer: true
+
+- id: lentilles-vertes
+  nom: Lentilles vertes
+  a_completer: true
+
+- id: levure-boulangere-fraiche
+  nom: Levure boulangere fraiche
+  a_completer: true
+
+- id: mache
+  nom: Mache
+  a_completer: true
+
+- id: maquereaux-conserve
+  nom: Maquereaux conserve
+  a_completer: true
+
+- id: noisettes
+  nom: Noisettes
+  a_completer: true
+
+- id: oignon-nouveau
+  nom: Oignon nouveau
+  a_completer: true
+
+- id: pain-levain
+  nom: Pain levain
+  a_completer: true
+
+- id: pain-pita
+  nom: Pain pita
+  a_completer: true
+
+- id: pates-cuites
+  nom: Pates cuites
+  a_completer: true
+
+- id: pommes-de-terre-rattes
+  nom: Pommes de terre rattes
+  a_completer: true
+
+- id: poulet-cuit
+  nom: Poulet cuit
+  a_completer: true
+
+- id: poulet-hache
+  nom: Poulet hache
+  a_completer: true
+
+- id: raclette
+  nom: Raclette
+  a_completer: true
+
+- id: raisins-secs
+  nom: Raisins secs
+  a_completer: true
+
+- id: riz-carnaroli
+  nom: Riz carnaroli
+  a_completer: true
+
+- id: riz-long-grain
+  nom: Riz long grain
+  a_completer: true
+
+- id: salami-piquant
+  nom: Salami piquant
+  a_completer: true
+
+- id: semoule-cuite
+  nom: Semoule cuite
+  a_completer: true
+
+- id: skyr
+  nom: Skyr
+  a_completer: true
+
+- id: spaghetti
+  nom: Spaghetti
+  a_completer: true
+
+- id: tortillas-mais
+  nom: Tortillas mais
+  a_completer: true
