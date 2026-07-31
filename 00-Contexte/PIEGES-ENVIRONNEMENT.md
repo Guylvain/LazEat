@@ -130,7 +130,27 @@ Nécessaire parce que `recettes.ts` et `ingredients.ts` utilisent des imports
 spécifiques à Vite qu'un `tsx` nu ne résout pas. Si le script touche à
 `persistance.ts`, prévoir en plus un polyfill `localStorage` en mémoire.
 
-## 8. Une seule session agentique à la fois par dépôt
+## 8. Commiter n'est pas pousser
+
+Arrivé deux fois. Neuf commits des sessions 2ter et 2quater sont restés sur
+la machine pendant que Vercel servait toujours la version de fin de session
+2bis — et les tests manuels ont été déroulés sur cette version périmée avant
+qu'on s'en aperçoive.
+
+**Règle** : `git push` fait partie du livrable, pas du rangement. Une session
+qui se termine sans push n'est pas terminée.
+
+Le rapport de session doit se clore sur la sortie de :
+
+```
+git log --oneline -n <nombre de commits de la session>
+git status -sb
+```
+
+`git status -sb` affiche `## main...origin/main` sans `[ahead N]` quand tout
+est poussé. C'est la preuve, pas l'intention.
+
+## 9. Une seule session agentique à la fois par dépôt
 
 Deux incidents d'écriture concurrente ont déjà produit des fichiers en double
 et des clés YAML dupliquées dans le référentiel.
