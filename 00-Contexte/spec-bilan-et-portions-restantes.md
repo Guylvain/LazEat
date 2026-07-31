@@ -108,16 +108,33 @@ Sans capture de ce surplus, il devient invisible, il est oublié au fond du frig
 Une réponse ≥ 1 à « Il t'en reste ? » crée automatiquement :
 
 ```yaml
-id: ps-20260805-001
-origine: restes              # batch | restes
-recette_id: chili-con-carne
-type_contenu: repas         # repas | composant
+recette_id: chili-con-carne   # ← la clé : une seule entrée par recette
+origine: restes               # batch | restes
+type_contenu: repas           # repas | composant
 date_production: 2026-08-05
 portions_restantes: 1
 dlc_estimee: 2026-08-09
-emplacement: frigo          # frigo | congelateur
-contenant_id: boite-03
+emplacement: frigo            # frigo | congelateur
 ```
+
+**Un seul lot par recette, pas un identifiant par lot.** Décision du
+31/07/2026, en remplacement du `id: ps-AAAAMMJJ-NNN` que décrivait cette
+spec. Le stockage est indexé par `recette_id`, sur le modèle de `Bilans`.
+
+Conséquence : deux lots de la même recette avec des DLC différentes ne sont
+pas représentables. Assumé — c'est un cas de bord, et la migration vers une
+liste de lots reste possible sans rien casser en aval si l'usage réel le
+réclame.
+
+**Mais la fusion doit être additive, jamais un remplacement.** Répondre une
+seconde fois à « Il t'en reste ? » pour une recette dont il reste déjà des
+portions doit **additionner** les portions et **retenir la DLC la plus
+proche**. Écraser l'entrée précédente ferait disparaître des portions
+réellement présentes au frigo — l'inverse exact de ce que cette
+fonctionnalité existe pour éviter.
+
+`contenant_id` reste hors périmètre tant que la notion de boîtes n'existe
+pas (§3.5).
 
 ### 3.3 La DLC est calculée, jamais saisie
 
@@ -180,7 +197,13 @@ Mes Placards
 └── Mon Placard
 ```
 
-Chaque plat prêt affiche : nom, nombre de portions, jours restants avant DLC, emplacement. Code couleur sur la DLC — vert au-delà de 2 jours, orange à 1 jour, rouge le jour même.
+Chaque plat prêt affiche : nom, nombre de portions, jours restants avant DLC, emplacement.
+
+**L'urgence se dit, elle ne se colore pas.** Décision du 31/07/2026, en remplacement du code couleur vert / orange / rouge que décrivait cette spec. `DESIGN.md` ne définit qu'un seul accent, `amber`, et interdit explicitement d'inventer une valeur — trois couleurs d'urgence en créeraient deux de toutes pièces et casseraient un système entier bâti sur un accent unique.
+
+L'urgence passe donc par la formulation : « à manger aujourd'hui », « à manger demain », « à manger avant le [date] ». Un seul signal binaire, `dlcUrgente`, gouverne l'emploi du fond ambré déjà prévu pour ce type de carte.
+
+C'est aussi plus lisible : « à manger demain » se comprend sans apprendre une convention, ce qui n'est pas le cas d'un point orange.
 
 ---
 
