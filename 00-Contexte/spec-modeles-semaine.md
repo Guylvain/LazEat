@@ -184,17 +184,23 @@ jours:
 
 ### Créneaux attendus — contrôle de conformité
 
+Identifiants exacts de l'énumération `Creneau`, comme en §1. `npm run verifier-modeles` compare désormais **le type et l'heure** de chaque créneau, plus seulement leur nombre — c'est ce trou qui avait laissé passer la confusion `collation-trajet` / `recharge-express`.
+
 | Jour | Nombre | Détail |
 |---|---|---|
-| Lundi | 4 | petit-déj 7h30 · déjeuner 12h30 · collation 18h45 · post-entraînement 22h30 |
-| Mardi | 5 | petit-déj 7h30 · déjeuner 12h30 · collation 17h45 · recharge 20h15 · post-entraînement 22h30 |
-| **Mercredi** | **4** | **recharge 7h05 · petit-déj 9h55 · déjeuner 13h · soir-cuisine 19h** |
-| Jeudi | 4 | petit-déj 7h30 · déjeuner 12h30 · collation 17h45 · soir-cuisine 21h15 |
-| Vendredi | 5 | recharge 7h05 · petit-déj 9h55 · déjeuner 13h · collation 18h45 · post-entraînement 22h30 |
-| Samedi | 3 | petit-déj 10h · déjeuner 13h · soir-cuisine 20h |
-| Dimanche | 4 | petit-déj 8h30 · avant-match 11h · recharge 16h · post-entraînement 19h30 |
+| Lundi | 4 | `petit-dej` 7h30 · `dejeuner` 12h30 · `collation-trajet` 18h45 · `post-entrainement-rapide` 22h30 |
+| **Mardi** | 5 | `petit-dej` 7h30 · `dejeuner` 12h30 · `collation-trajet` 17h45 · **`recharge-express` 20h15** · `post-entrainement-rapide` 22h30 |
+| Mercredi | 4 | `recharge-express` 7h05 · `petit-dej` 9h55 · `dejeuner` 13h · **`batch` 19h** |
+| Jeudi | 4 | `petit-dej` 7h30 · `dejeuner` 12h30 · `collation-trajet` 17h45 · `soir-cuisine` 21h15 |
+| Vendredi | 5 | `recharge-express` 7h05 · `petit-dej` 9h55 · `dejeuner` 13h · `collation-trajet` 18h45 · `post-entrainement-rapide` 22h30 |
+| Samedi | 3 | `petit-dej` 10h · `dejeuner` 13h · `soir-cuisine` 20h |
+| Dimanche | 4 | `petit-dej` 8h30 · `avant-match` 11h · `recharge-express` 16h · `post-entrainement-rapide` 19h30 |
 
-Le mercredi doit produire **quatre** créneaux, pas deux. C'est le test qui échoue aujourd'hui.
+Deux lignes portent l'essentiel de ce qui a été corrigé le 31/07/2026.
+
+**Mercredi** produit `batch`, pas `soir-cuisine` — la ligne disait encore `soir-cuisine` alors que la règle du batch était déjà appliquée et vérifiée. C'est ce genre d'écart entre le texte et le comportement qui rend une table de conformité inutile.
+
+**Mardi** est le seul jour à porter les deux types de collation, et c'est ce qui les distingue : `collation-trajet` à 17h45 se mange dans les transports entre le travail et le club, `recharge-express` à 20h15 sort du sac de sport entre l'encadrement et l'entraînement. Un repas de trajet à 20h15 n'aurait aucun sens, et une barre de céréales à 17h45 ne tiendrait pas jusqu'à 22h30.
 
 ---
 
@@ -206,19 +212,19 @@ Deux réserves : les créneaux de salle ne sont pas encore fixés sur ce type de
 
 ### Créneaux attendus — contrôle de conformité
 
-Absent jusqu'au 31/07/2026 : `npm run verifier-modeles` ne contrôlait que la semaine d'alternance, ce qui explique que le problème du jour de batch soit passé inaperçu. À ajouter au script.
+Absente jusqu'au 31/07/2026 : `npm run verifier-modeles` ne contrôlait que la semaine d'alternance, ce qui explique que le problème du jour de batch soit passé inaperçu. Le script couvre désormais les deux modèles, types et heures compris.
 
 | Jour | Nombre | Détail |
 |---|---|---|
-| Lundi | 4 | petit-déj 7h20 · déjeuner 12h30 · collation 18h45 · post-entraînement 22h30 |
-| Mardi | 5 | petit-déj 7h20 · déjeuner 12h30 · collation 17h45 · recharge 20h15 · post-entraînement 22h30 |
-| **Mercredi** | **3** | petit-déj 7h20 · déjeuner 12h30 · **batch 19h** |
-| Jeudi | 4 | petit-déj 7h20 · déjeuner 12h30 · collation 17h45 · soir-cuisine 21h15 |
-| Vendredi | 4 | petit-déj 7h20 · déjeuner 12h30 · collation 18h45 · post-entraînement 22h30 |
-| Samedi | 3 | petit-déj 10h · déjeuner 13h · soir-cuisine 20h |
-| Dimanche | 4 | petit-déj 8h30 · avant-match 11h · recharge 16h · post-entraînement 19h30 |
+| Lundi | 4 | `petit-dej` 7h20 · `dejeuner` 12h30 · `collation-trajet` 18h45 · `post-entrainement-rapide` 22h30 |
+| Mardi | 5 | `petit-dej` 7h20 · `dejeuner` 12h30 · `collation-trajet` 17h45 · `recharge-express` 20h15 · `post-entrainement-rapide` 22h30 |
+| **Mercredi** | **3** | `petit-dej` 7h20 · `dejeuner` 12h30 · **`batch` 19h** |
+| Jeudi | 4 | `petit-dej` 7h20 · `dejeuner` 12h30 · `collation-trajet` 17h45 · `soir-cuisine` 21h15 |
+| Vendredi | 4 | `petit-dej` 7h20 · `dejeuner` 12h30 · `collation-trajet` 18h45 · `post-entrainement-rapide` 22h30 |
+| Samedi | 3 | `petit-dej` 10h · `dejeuner` 13h · `soir-cuisine` 20h |
+| Dimanche | 4 | `petit-dej` 8h30 · `avant-match` 11h · `recharge-express` 16h · `post-entrainement-rapide` 19h30 |
 
-Les heures sont à confirmer contre l'implémentation : ce tableau est déduit des règles de la §1, il n'a pas été vérifié par exécution, contrairement à celui de la semaine d'alternance.
+Table confirmée par exécution le 31/07/2026, elle n'est plus une déduction.
 
 ```yaml
 id: cours
