@@ -82,6 +82,14 @@ types_evenement:
 
 **Règle du repas du soir.** Si aucun créneau n'existe après 18h, on ajoute `soir-cuisine` à 19h. Un jour sans événement le soir reste un jour où l'on dîne.
 
+**Règle du batch cooking.** Le créneau de batch de la semaine est **désigné explicitement** par le champ `batch: true` sur un événement `soiree-libre` du modèle. Son `soir-cuisine` devient `batch`. Un seul par semaine.
+
+Il ne doit **pas** être déduit du `mode` du jour. La règle « premier jour distanciel ou libre portant une soiree-libre », implémentée en session 1, tombe juste en semaine d'alternance — mercredi y est distanciel — mais désigne **samedi** en semaine de cours, où les cinq jours sont présentiel par défaut.
+
+Or samedi est le dernier soir cuisinable de la semaine. Le créneau de batch ne peut donc jamais se trouver en amont d'un consommateur, et **le chaînage de production devient structurellement impossible** : `pate-a-pizza-maison` ne peut plus alimenter aucune garniture, `riz-cuit-en-quantite` aucun plat de riz. Le chaînage refuse à juste titre d'insérer une recette productrice après son consommateur ; c'est la désignation du jour qui est fautive, pas lui.
+
+Constaté en test le 31/07/2026 : en semaine de cours, aucune garniture de pizza ne pouvait déclencher le chaînage.
+
 **Déduplication.** Deux créneaux du même type à moins de 90 minutes d'écart fusionnent, en gardant le plus contraint des deux.
 
 **Journée à forte charge.** Deux événements `intensite: elevee` le même jour : tous les créneaux générés deviennent `pilier: true`.
@@ -120,7 +128,7 @@ jours:
       - {type: salle-de-sport,  debut: "07:20", fin: "09:30"}
       - {type: trajet,          debut: "09:30", fin: "09:55"}
       - {type: teletravail,     debut: "10:00", fin: "18:00"}
-      - {type: soiree-libre,    debut: "19:00", fin: "20:00"}   # batch cooking
+      - {type: soiree-libre,    debut: "19:00", fin: "20:00", batch: true}
 
   jeudi:
     mode: presentiel
@@ -176,6 +184,24 @@ Le mercredi doit produire **quatre** créneaux, pas deux. C'est le test qui éch
 
 Deux réserves : les créneaux de salle ne sont pas encore fixés sur ce type de semaine, et les jours de distanciel ne sont pas connus. Le modèle reste donc en présentiel intégral, la bascule par jour permettant de l'ajuster à la main.
 
+**C'est précisément ce présentiel intégral qui cassait le batch cooking** tant que le jour était déduit du mode. Mercredi porte `batch: true` ici comme en alternance, indépendamment de son mode.
+
+### Créneaux attendus — contrôle de conformité
+
+Absent jusqu'au 31/07/2026 : `npm run verifier-modeles` ne contrôlait que la semaine d'alternance, ce qui explique que le problème du jour de batch soit passé inaperçu. À ajouter au script.
+
+| Jour | Nombre | Détail |
+|---|---|---|
+| Lundi | 4 | petit-déj 7h20 · déjeuner 12h30 · collation 18h45 · post-entraînement 22h30 |
+| Mardi | 5 | petit-déj 7h20 · déjeuner 12h30 · collation 17h45 · recharge 20h15 · post-entraînement 22h30 |
+| **Mercredi** | **3** | petit-déj 7h20 · déjeuner 12h30 · **batch 19h** |
+| Jeudi | 4 | petit-déj 7h20 · déjeuner 12h30 · collation 17h45 · soir-cuisine 21h15 |
+| Vendredi | 4 | petit-déj 7h20 · déjeuner 12h30 · collation 18h45 · post-entraînement 22h30 |
+| Samedi | 3 | petit-déj 10h · déjeuner 13h · soir-cuisine 20h |
+| Dimanche | 4 | petit-déj 8h30 · avant-match 11h · recharge 16h · post-entraînement 19h30 |
+
+Les heures sont à confirmer contre l'implémentation : ce tableau est déduit des règles de la §1, il n'a pas été vérifié par exécution, contrairement à celui de la semaine d'alternance.
+
 ```yaml
 id: cours
 nom: Semaine de cours
@@ -205,7 +231,7 @@ jours:
       - {type: trajet,       debut: "08:20", fin: "09:10"}
       - {type: cours,        debut: "09:10", fin: "17:10"}
       - {type: trajet,       debut: "17:10", fin: "17:50"}
-      - {type: soiree-libre, debut: "19:00", fin: "20:00"}   # batch cooking
+      - {type: soiree-libre, debut: "19:00", fin: "20:00", batch: true}
 
   jeudi:
     mode: presentiel
