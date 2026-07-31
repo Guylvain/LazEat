@@ -56,6 +56,13 @@ jamais été chargée dans le build de production. Trois sessions de remise en
 substitution et non une réécriture. Débloque la synchronisation entre
 appareils, et le stockage des photos.
 
+**Le schéma porte un `user_id` et la sécurité par ligne dès le premier jour**,
+sans qu'aucune fonctionnalité multi-utilisateur soit construite. Décision du
+31/07/2026, motivée par une asymétrie de coût : gratuit au moment où le schéma
+s'écrit, coûteux ensuite (migration sur données vivantes, RLS à
+rétro-installer, clés à réécrire). Détail et limites dans
+`DECISION-MULTI-UTILISATEUR.md`.
+
 **Journal de dépenses** — photo du ticket, magasin, montant, saisis à la
 main. **Pas d'OCR**, décision prise. Remonté volontairement ici alors qu'il
 appartient au module stock : sa valeur vient de l'accumulation, plus il

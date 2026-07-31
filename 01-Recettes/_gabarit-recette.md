@@ -186,6 +186,25 @@ C'est le chaînage de production. Sans cette règle, la liste de courses devient
 
 Ingrédients produits actuellement au référentiel : `paton-pizza` (par `pate-a-pizza-maison`), `riz-cuit` (par `riz-cuit-en-quantite`).
 
+## `statut_personnel` est une donnée personnelle dans un fichier partagé
+
+**À ne pas oublier si l'app devient un jour multi-utilisateur.** Ce champ
+décrit le goût de Liam — `miel: exclu`, `sardines: a-tester` — alors que le
+référentiel est partagé par construction. Un second compte hériterait de ses
+exclusions.
+
+C'est le dernier endroit où le personnel et le canonique sont mélangés. Les
+champs équivalents de la recette (`note`, `nb_executions`,
+`derniere_execution`) ont déjà été sortis du frontmatter vers la persistance
+en session 2ter : le markdown n'en garde qu'une valeur initiale.
+
+Non corrigé délibérément — le déplacer ne sert rien tant qu'un seul
+utilisateur existe. Le jour venu, `statut_personnel` sort du YAML et devient
+une table `(user_id, ingredient_id, statut)`. Voir
+`00-Contexte/DECISION-MULTI-UTILISATEUR.md`.
+
+**Ne rien bâtir de plus sur ce champ en attendant.**
+
 ## Statuts personnels déjà connus
 
 **exclu** — `epinards` (à retester ponctuellement, jamais en pilier), `brocoli`, `choux-bruxelles`, `avocat`, `miel`
