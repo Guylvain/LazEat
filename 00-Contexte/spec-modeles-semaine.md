@@ -9,12 +9,18 @@ Remplace toute inférence faite depuis les maquettes HTML.
 
 Un événement n'est pas une barre sur un calendrier : **c'est une règle qui produit des créneaux repas.**
 
+> **Les noms de créneaux ci-dessous sont les identifiants exacts de
+> l'énumération `Creneau`.** Les versions abrégées employées jusqu'au
+> 31/07/2026 — `collation`, `recharge`, `post-entrainement` — n'existent nulle
+> part dans le code et ont produit une erreur de correspondance décrite après
+> ce bloc. Ne jamais réintroduire d'abréviation ici.
+
 ```yaml
 types_evenement:
   - id: salle-de-sport
     intensite: elevee
     genere:
-      - creneau: recharge          # collation courte avant l'effort
+      - creneau: recharge-express  # courte, dans le sac, avant l'effort
         offset_min: -15            # avant le début
         pilier: true
       - creneau: petit-dej         # vrai repas après la séance du matin
@@ -24,16 +30,16 @@ types_evenement:
   - id: rugby-entrainement
     intensite: elevee
     genere:
-      - creneau: collation
+      - creneau: collation-trajet  # mangée dans les transports en rentrant
         offset_min: -75
         pilier: true
-      - creneau: post-entrainement
+      - creneau: post-entrainement-rapide
         offset_min: +30
 
   - id: rugby-encadrement
     intensite: moderee
     genere:
-      - creneau: collation
+      - creneau: collation-trajet
         offset_min: -75
 
   - id: rugby-match
@@ -42,9 +48,9 @@ types_evenement:
       - creneau: avant-match
         offset_min: -120
         pilier: true
-      - creneau: recharge
+      - creneau: recharge-express
         offset_min: +180           # pendant, dans le sac
-      - creneau: post-entrainement
+      - creneau: post-entrainement-rapide
         offset_min: +30
         pilier: true
 
@@ -78,6 +84,12 @@ types_evenement:
         heure: "19:00"
 ```
 
+**Règle des efforts enchaînés.** Quand un `rugby-entrainement` commence moins de 30 minutes après la fin d'un autre événement, son créneau amont **n'est pas** une `collation-trajet` à −75 : c'est une `recharge-express` à **−15**, sur le modèle de `salle-de-sport`.
+
+Sans cette règle, le mardi produit une collation à 19h15 — soit **en plein milieu de l'encadrement des cadets, de 19h à 20h30**. Un créneau où l'on ne peut physiquement pas manger. Le bon moment est 20h15, entre la fin de l'encadrement et le début de l'entraînement personnel, sac de sport à la main : c'est un ravitaillement court, pas un repas de trajet.
+
+C'est ce créneau de 20h15 que visent `recharge-abricots-compote`, `recharge-dattes-amandes` et `boisson-recuperation`, écrites après la session 2 pour combler ce trou (`ETAT-DU-PROJET.md` §11).
+
 **Règle du petit-déjeuner.** Un créneau `petit-dej` est généré chaque jour à `heure_premier_evenement − 60 min`, sauf si un événement `salle-de-sport` en produit déjà un — auquel cas on ne double pas. Sans événement du tout, il est fixé à 10h.
 
 **Règle du repas du soir.** Si aucun créneau n'existe après 18h, on ajoute `soir-cuisine` à 19h. Un jour sans événement le soir reste un jour où l'on dîne.
@@ -89,6 +101,12 @@ Il ne doit **pas** être déduit du `mode` du jour. La règle « premier jour di
 Or samedi est le dernier soir cuisinable de la semaine. Le créneau de batch ne peut donc jamais se trouver en amont d'un consommateur, et **le chaînage de production devient structurellement impossible** : `pate-a-pizza-maison` ne peut plus alimenter aucune garniture, `riz-cuit-en-quantite` aucun plat de riz. Le chaînage refuse à juste titre d'insérer une recette productrice après son consommateur ; c'est la désignation du jour qui est fautive, pas lui.
 
 Constaté en test le 31/07/2026 : en semaine de cours, aucune garniture de pizza ne pouvait déclencher le chaînage.
+
+**Défaut de correspondance constaté le 31/07/2026, à corriger dans le code.** `creneauxDepuisEvenement()` traduit **à la fois** `collation` et `recharge` en `recharge-express`. Conséquence : **aucun événement ne produit jamais de créneau `collation-trajet`.** Le type existe pourtant partout ailleurs — énumération, budget, conseil, mode de sélection, filtre de matching, préférences — et huit recettes le déclarent.
+
+Effet concret : le mardi 17h45, entre le travail et le club, l'app propose des abricots secs et une boisson de récupération. `tartines-collation-trajet`, dont le texte dit « Recette du mardi. Préparée le matin, mangée à 17h30 dans les transports », n'apparaît pas — elle déclare `collation-trajet`, un créneau qui n'existe jamais.
+
+Les deux types ne sont pas interchangeables : `collation-trajet` se prépare la veille et se mange sans couverts dans les transports ; `recharge-express` ne se prépare pas et vit en permanence dans le sac de sport.
 
 **Déduplication.** Deux créneaux du même type à moins de 90 minutes d'écart fusionnent, en gardant le plus contraint des deux.
 
