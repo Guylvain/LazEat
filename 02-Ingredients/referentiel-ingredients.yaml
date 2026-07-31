@@ -1684,12 +1684,104 @@ ingredients:
   statut_personnel: aime
   substituts: [origan-seche, menthe-fraiche]
 
+- id: compote-a-boire
+  nom: Compote à boire
+  categorie: fruit
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 90
+  conditionnement: 4
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: []
+
+- id: barre-cereales
+  nom: Barre de céréales
+  categorie: feculent
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 30
+  conditionnement: 6
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: neutre
+  substituts: []
+
+- id: compote-a-boire
+  nom: compote à boire
+  categorie: fruit
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 90
+  conditionnement: 12
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: []
+
+- id: dattes
+  nom: Dattes
+  categorie: fruit
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: neutre
+  substituts: [abricots-secs, raisins-secs]
+
+- id: amandes
+  nom: Amandes
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [omega-3, proteines]
+  statut_personnel: aime
+  substituts: [noix, noisettes]
+
 # ─── Ingrédients apparaissant uniquement comme substituts ───
 # À compléter si tu les utilises réellement. Laissés minimaux.
 
 - id: amandes
   nom: Amandes
-  a_completer: true
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [noix, noisettes]
 
 - id: bavette
   nom: Bavette
@@ -1741,7 +1833,19 @@ ingredients:
 
 - id: dattes
   nom: Dattes
-  a_completer: true
+  categorie: fruit
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 250
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [abricots-secs, raisins-secs]
 
 - id: des-de-jambon
   nom: Des de jambon
