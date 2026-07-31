@@ -1346,7 +1346,11 @@ ingredients:
   produit_par: null
   tags_nutritionnels: []
   statut_personnel: neutre
-  substituts: [miel]
+  # Pas de substitut : le miel est `exclu`. Le filtre dur du matching écarte
+  # une recette dont un ingrédient est exclu « sans substitut déclaré », mais
+  # rien n'empêche un SUBSTITUT d'être lui-même exclu — d'où la proposition
+  # de miel qui remontait ici.
+  substituts: []
 
 - id: miel
   nom: Miel
@@ -1685,12 +1689,12 @@ ingredients:
   substituts: [origan-seche, menthe-fraiche]
 
 - id: compote-a-boire
-  nom: Compote à boire
+  nom: compote à boire
   categorie: fruit
   rayon: epicerie
   unite_base: piece
   poids_moyen_piece: 90
-  conditionnement: 4
+  conditionnement: 4          # À VÉRIFIER en magasin : 4 ou 12 selon le format
   emplacement: placard
   duree_conservation: null
   suivi_stock: precis
@@ -1716,22 +1720,6 @@ ingredients:
   statut_personnel: neutre
   substituts: []
 
-- id: compote-a-boire
-  nom: compote à boire
-  categorie: fruit
-  rayon: epicerie
-  unite_base: piece
-  poids_moyen_piece: 90
-  conditionnement: 12
-  emplacement: placard
-  duree_conservation: null
-  suivi_stock: precis
-  provenance: achete
-  produit_par: null
-  tags_nutritionnels: [glucides-lents]
-  statut_personnel: aime
-  substituts: []
-
 - id: dattes
   nom: Dattes
   categorie: fruit
@@ -1760,28 +1748,155 @@ ingredients:
   suivi_stock: precis
   provenance: achete
   produit_par: null
-  tags_nutritionnels: [omega-3, proteines]
+  # Pas de tag omega-3 : l'amande est riche en acides gras mono-insaturés et
+  # en vitamine E, mais c'est la NOIX qui porte les oméga-3. Taguer l'amande
+  # omega-3 fausserait le score sur l'un des deux objectifs du bilan sanguin.
+  tags_nutritionnels: [proteines]
   statut_personnel: aime
   substituts: [noix, noisettes]
 
-# ─── Ingrédients apparaissant uniquement comme substituts ───
-# À compléter si tu les utilises réellement. Laissés minimaux.
+# ─── Ajouts du 31/07/2026 — recettes petit-déjeuner et avant-match ───
+# Les `conditionnement` sont des estimations, comme le reste du fichier.
 
-- id: amandes
-  nom: Amandes
+- id: jus-orange
+  nom: Jus d'orange
+  categorie: fruit
+  rayon: frais
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: frigo
+  duree_conservation: 5
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  # Le seul vecteur de folates compatible avec la contrainte "pauvre en
+  # fibres" du créneau avant-match. Les légumineuses, levier B9 principal,
+  # y sont interdites.
+  tags_nutritionnels: [folates]
+  statut_personnel: aime
+  substituts: []
+
+- id: graines-lin-moulues
+  nom: Graines de lin moulues
   categorie: matiere-grasse
   rayon: epicerie
   unite_base: g
   poids_moyen_piece: null
-  conditionnement: 200
+  conditionnement: 250
+  emplacement: frigo
+  duree_conservation: 60
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [omega-3]
+  statut_personnel: neutre
+  # Moulues, jamais entières : la graine entière traverse le tube digestif
+  # sans être digérée, l'oméga-3 n'est pas absorbé. Se conserve au frigo,
+  # elle rancit vite une fois moulue.
+  substituts: [noix]
+
+- id: saumon-fume
+  nom: Saumon fumé
+  categorie: proteine
+  rayon: poissonnerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 100
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [omega-3, proteines]
+  statut_personnel: aime
+  substituts: [maquereaux-conserve]
+
+- id: riz-rond
+  nom: Riz rond
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
   emplacement: placard
   duree_conservation: null
   suivi_stock: precis
   provenance: achete
   produit_par: null
-  tags_nutritionnels: [proteines]
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: neutre
+  substituts: [riz-arborio]
+
+- id: semoule-couscous
+  nom: Semoule de couscous
+  categorie: feculent
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 500
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
   statut_personnel: aime
-  substituts: [noix, noisettes]
+  substituts: [riz-basmati]
+
+- id: pain-de-mie
+  nom: tranche de pain de mie
+  categorie: feculent
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 30
+  conditionnement: 20
+  emplacement: placard
+  duree_conservation: 8
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  # Le pain blanc est ici un choix, pas un défaut : avant un match, la mie
+  # blanche est bien plus digeste que le complet, dont les fibres fermentent
+  # à l'effort.
+  substituts: [pain-complet]
+
+- id: sucre
+  nom: Sucre en poudre
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [sirop-erable]
+
+- id: levure-chimique
+  nom: Levure chimique
+  categorie: placard
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 11
+  emplacement: etagere-epices
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: []
+
+# ─── Ingrédients apparaissant uniquement comme substituts ───
+# À compléter si tu les utilises réellement. Laissés minimaux.
 
 - id: bavette
   nom: Bavette
@@ -1792,12 +1907,36 @@ ingredients:
   a_completer: true
 
 - id: blanc-de-poulet
-  nom: Blanc de poulet
-  a_completer: true
+  nom: Blanc de poulet cuit
+  categorie: proteine
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 150
+  emplacement: frigo
+  duree_conservation: 5
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [jambon-blanc, filets-poulet]
 
 - id: bouillon-volaille
-  nom: Bouillon volaille
-  a_completer: true
+  nom: Bouillon de volaille
+  categorie: placard
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: binaire
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [bouillon-legumes]
 
 - id: burrata
   nom: Burrata
@@ -1816,8 +1955,20 @@ ingredients:
   a_completer: true
 
 - id: citron-vert
-  nom: Citron vert
-  a_completer: true
+  nom: citron vert
+  categorie: fruit
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 70
+  conditionnement: 4
+  emplacement: frigo
+  duree_conservation: 21
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [folates]
+  statut_personnel: aime
+  substituts: [citron]
 
 - id: corn-flakes-ecrases
   nom: Corn flakes ecrases
@@ -1830,22 +1981,6 @@ ingredients:
 - id: creme-liquide
   nom: Creme liquide
   a_completer: true
-
-- id: dattes
-  nom: Dattes
-  categorie: fruit
-  rayon: epicerie
-  unite_base: g
-  poids_moyen_piece: null
-  conditionnement: 250
-  emplacement: placard
-  duree_conservation: null
-  suivi_stock: precis
-  provenance: achete
-  produit_par: null
-  tags_nutritionnels: [glucides-lents]
-  statut_personnel: aime
-  substituts: [abricots-secs, raisins-secs]
 
 - id: des-de-jambon
   nom: Des de jambon
@@ -1896,8 +2031,20 @@ ingredients:
   a_completer: true
 
 - id: lait-amande
-  nom: Lait amande
-  a_completer: true
+  nom: Lait d'amande
+  categorie: laitier
+  rayon: epicerie
+  unite_base: ml
+  poids_moyen_piece: null
+  conditionnement: 1000
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: neutre
+  substituts: [lait]
 
 - id: laitue
   nom: Laitue
@@ -1912,24 +2059,87 @@ ingredients:
   a_completer: true
 
 - id: mache
-  nom: Mache
-  a_completer: true
+  nom: Mâche
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 125
+  emplacement: frigo
+  duree_conservation: 4
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  # Substitution actée des épinards, exclus : la mâche est l'une des
+  # meilleures sources de folates parmi les feuilles, et elle passe.
+  tags_nutritionnels: [folates]
+  statut_personnel: aime
+  substituts: [salade-verte, roquette]
 
 - id: maquereaux-conserve
-  nom: Maquereaux conserve
-  a_completer: true
+  nom: Maquereaux en conserve
+  categorie: proteine
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 120
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [omega-3, proteines]
+  statut_personnel: a-tester
+  substituts: [sardines-conserve, saumon-fume]
 
 - id: noisettes
   nom: Noisettes
-  a_completer: true
+  categorie: matiere-grasse
+  rayon: epicerie
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 200
+  emplacement: placard
+  duree_conservation: null
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  # Comme l'amande : pas de tag omega-3. Seule la noix en porte.
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [amandes, noix]
 
 - id: oignon-nouveau
-  nom: Oignon nouveau
-  a_completer: true
+  nom: oignon nouveau
+  categorie: legume
+  rayon: fruits-legumes
+  unite_base: piece
+  poids_moyen_piece: 40
+  conditionnement: 8
+  emplacement: frigo
+  duree_conservation: 7
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: []
+  statut_personnel: aime
+  substituts: [ciboule, echalote]
 
 - id: pain-levain
-  nom: Pain levain
-  a_completer: true
+  nom: tranche de pain au levain
+  categorie: feculent
+  rayon: epicerie
+  unite_base: piece
+  poids_moyen_piece: 45
+  conditionnement: 12
+  emplacement: placard
+  duree_conservation: 5
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [glucides-lents]
+  statut_personnel: aime
+  substituts: [pain-complet]
 
 - id: pain-pita
   nom: Pain pita
@@ -1981,7 +2191,19 @@ ingredients:
 
 - id: skyr
   nom: Skyr
-  a_completer: true
+  categorie: laitier
+  rayon: frais
+  unite_base: g
+  poids_moyen_piece: null
+  conditionnement: 450
+  emplacement: frigo
+  duree_conservation: 14
+  suivi_stock: precis
+  provenance: achete
+  produit_par: null
+  tags_nutritionnels: [proteines]
+  statut_personnel: aime
+  substituts: [yaourt-grec, fromage-blanc]
 
 - id: spaghetti
   nom: Spaghetti
