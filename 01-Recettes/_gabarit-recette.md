@@ -81,7 +81,14 @@ tags_nutritionnels:
 
 # ─── SUIVI ──────────────────────────────────────────────
 statut: a-tester             # a-tester | validee | rejetee
-note: null                   # 1 à 5, saisie après exécution
+note: null                   # 1 à 4, saisie après exécution — PAS 1 à 5
+# L'échelle est paire volontairement. Les règles de transition de statut
+# (spec-bilan-et-portions-restantes.md §2.3) sont écrites « note ≥ 3 →
+# validee » et « note ≤ 2 → reste a-tester » : ça ne partage proprement
+# qu'une échelle à quatre valeurs. Sur 1 à 5, le point milieu (3)
+# validerait une recette jugée quelconque.
+# Une échelle paire force aussi à trancher, là où un milieu neutre se
+# choisit par défaut — et ce champ n'a de valeur que s'il discrimine.
 derniere_execution: null
 nb_executions: 0
 source: null                 # origine de la recette, si applicable

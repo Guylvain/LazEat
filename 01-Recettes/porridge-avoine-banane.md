@@ -4,7 +4,10 @@ nom: Porridge avoine banane
 photo_placeholder: assets/photos-recettes/porridge-avoine-banane.jpg
 photo_perso: null
 type_production: repas
-famille: petit-dej
+# Voir la note de `bol-yaourt-banane-noix` : `famille` regroupe des
+# variantes, pas un créneau. Une famille sera réattribuée quand les
+# nouvelles recettes de petit-déjeuner créeront de vraies fratries.
+famille: null
 
 creneaux_compatibles: [petit-dej, avant-match]
 temps_actif: 5

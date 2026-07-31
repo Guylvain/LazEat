@@ -152,7 +152,7 @@ L'entité la plus importante et la plus sous-estimée. **Aucune recette ne doit 
 | `ustensiles` | liste | Pour signaler ce qui demande un four, un mixeur, etc. |
 | `tags_nutritionnels` | liste | Hérités ou déclarés |
 | `statut` | enum | à-tester, validée, rejetée |
-| `note` | 1 à 5 | Renseignée après exécution |
+| `note` | 1 à 4 | Renseignée après exécution. Échelle paire, voir `spec-bilan-et-portions-restantes.md` §2.3 — corrigé le 31/07/2026, ce document disait 1 à 5 |
 | `derniere_execution` | date | Alimente la rotation |
 | `nb_executions` | entier | |
 

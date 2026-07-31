@@ -4,7 +4,7 @@ nom: Tartines de collation pour le trajet
 photo_placeholder: assets/photos-recettes/tartines-collation-trajet.jpg
 photo_perso: null
 type_production: repas
-famille: null
+famille: tartine
 
 creneaux_compatibles: [collation-trajet, petit-dej]
 temps_actif: 5

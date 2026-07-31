@@ -4,7 +4,11 @@ nom: Bol yaourt banane noix
 photo_placeholder: assets/photos-recettes/bol-yaourt-banane-noix.jpg
 photo_perso: null
 type_production: repas
-famille: petit-dej
+# `famille` regroupe des VARIANTES entre elles, jamais un créneau. Six
+# recettes de petit-déjeuner partageant une famille rendraient impossible
+# de remplir cinq petits-déjeuners par semaine : la rotation interdit deux
+# recettes de même famille à deux jours d'écart.
+famille: null
 
 creneaux_compatibles: [petit-dej, collation-trajet]
 temps_actif: 2
@@ -64,4 +68,4 @@ Verser `{yaourt-grec}` dans un bol. Ajouter `{banane}` en rondelles, `{noix}` co
 
 **Ne pas préparer plus d'un jour à l'avance** — la banane noircit et les flocons se ramollissent.
 
-**Version match** : ajouter du miel ou du sirop et doubler les flocons, deux heures avant le coup d'envoi.
+**Version match** : doubler `sirop-erable` et `flocons-avoine`, retirer `noix` — le gras des oléagineux ralentit la vidange gastrique. À prendre deux heures avant le coup d'envoi.

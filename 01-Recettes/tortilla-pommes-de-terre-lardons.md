@@ -4,7 +4,7 @@ nom: Tortilla pommes de terre lardons
 photo_placeholder: assets/photos-recettes/tortilla-pommes-de-terre-lardons.jpg
 photo_perso: null
 type_production: repas
-famille: null
+famille: tortilla
 
 creneaux_compatibles: [post-entrainement-rapide, dejeuner, soir-cuisine]
 temps_actif: 12

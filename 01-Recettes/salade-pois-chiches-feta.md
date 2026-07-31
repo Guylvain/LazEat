@@ -6,7 +6,7 @@ photo_perso: null
 type_production: repas
 famille: salade-fraiche
 
-creneaux_compatibles: [dejeuner, soir-cuisine]
+creneaux_compatibles: [dejeuner, soir-cuisine, batch]
 temps_actif: 12
 temps_total: 12
 portions_base: 2
