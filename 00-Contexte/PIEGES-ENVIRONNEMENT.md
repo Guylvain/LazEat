@@ -130,7 +130,33 @@ Nécessaire parce que `recettes.ts` et `ingredients.ts` utilisent des imports
 spécifiques à Vite qu'un `tsx` nu ne résout pas. Si le script touche à
 `persistance.ts`, prévoir en plus un polyfill `localStorage` en mémoire.
 
-## 8. Commiter n'est pas pousser
+## 8. `Clear site data` et les écritures pas encore synchronisées
+
+**Danger fortement réduit depuis la mise en service de Supabase**, le
+2 août 2026 — la synchronisation a été vérifiée de bout en bout, écriture
+hors-ligne comprise. Les données vivent désormais dans Postgres ;
+`localStorage` n'est qu'un cache.
+
+**Ce qui reste vrai.** La file d'attente de synchronisation
+(`lazeat:file-attente-sync`) vit dans `localStorage`. Purger le stockage
+alors que des écritures n'ont pas encore été remontées — typiquement après
+une session hors-ligne — les perd définitivement.
+
+**Règle** : ne jamais purger sans être en ligne et sans avoir laissé passer
+une minute. `Service Workers → Unregister` seul reste de toute façon
+suffisant pour le problème du §1, et ne touche pas au stockage.
+
+**Ce qui l'était avant, et qui vaut d'être retenu comme principe.** Entre les
+sessions 2ter et 3c, les bilans, portions stockées et semaines n'existaient
+**que** dans `localStorage` — le frontmatter des recettes ne contient que des
+valeurs *initiales*. Le protocole de purge du §1 les aurait détruits sans
+recours.
+
+Ni le protocole ni la migration n'étaient fautifs séparément : c'est leur
+rencontre qui l'était. À reconsidérer chaque fois qu'une donnée locale devient
+la seule copie de quelque chose.
+
+## 9. Commiter n'est pas pousser
 
 Arrivé deux fois. Neuf commits des sessions 2ter et 2quater sont restés sur
 la machine pendant que Vercel servait toujours la version de fin de session

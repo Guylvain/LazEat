@@ -84,7 +84,7 @@ Manquent encore : une balance de cuisine et des boîtes supplémentaires.
 
 ### Stack
 
-Vite · React · TypeScript · Tailwind v4 · vite-plugin-pwa · Zod · gray-matter · persistance localStorage derrière une interface asynchrone · Vercel Hobby.
+Vite · React · TypeScript · Tailwind v4 · vite-plugin-pwa · Zod · gray-matter · **Supabase** (Postgres, Storage, Auth) derrière une interface de persistance asynchrone, avec cache local et file d'attente hors-ligne · Vercel Hobby.
 
 ### Sessions livrées
 
@@ -96,12 +96,19 @@ Vite · React · TypeScript · Tailwind v4 · vite-plugin-pwa · Zod · gray-mat
 | **2ter** | Jour de batch explicite, sélecteur à 10 portions, **portions restantes** et section « Déjà prêt au frigo » |
 | **2quater** | `collation-trajet` enfin généré, règle des efforts enchaînés, fusion additive des portions |
 | **3a** | **Dates réelles**, chaîne créneau → cuisine → bilan → créneau, Planning s'ouvre sur aujourd'hui |
+| **3b** | **Rituel du dimanche**, correctif de sur-réservation des portions |
+| **3c** | Correctifs du rituel, **Supabase**, journal de dépenses |
+| **3d** | Connexion par mot de passe à la place du lien magique |
 
 **Les sessions 1 et 2 n'avaient jamais été validées.** Le test manuel du 31/07/2026 a révélé qu'aucune recette n'avait jamais été chargée dans le build de production : tout ce qui dépendait d'une recette affectée — liste de courses, chaînage, feuille de sélection — n'avait jamais été exercé. Trois sessions de remise en état ont été nécessaires.
 
 ### État de vérification
 
-**La phase 2 est close**, protocole manuel déroulé en entier et passé. La session 3a l'est aussi, 14 tests validés à la main.
+**La phase 2 est close**, protocole manuel déroulé en entier et passé. Les sessions 3a et 3b l'ont été aussi, 16 tests validés à la main.
+
+**Supabase est en production depuis le 2 août 2026.** Vérifié de bout en bout : écriture en ligne remontée dans Postgres, application pleinement utilisable en mode avion, et écritures faites hors-ligne synchronisées au retour du réseau. C'était le risque principal de la session 3c — la liste de courses s'utilise en magasin et le mode cuisine à 22h30, deux endroits où le réseau manque.
+
+Le schéma porte `user_id` et la sécurité par ligne sur ses six tables, sans qu'aucune fonctionnalité multi-utilisateur ne soit construite (`DECISION-MULTI-UTILISATEUR.md`).
 
 `npm run build`, `npm run validate` et `npm run verifier-modeles` passent. Ce dernier contrôle désormais **le type et l'heure** de chaque créneau sur les deux modèles, plus seulement leur nombre.
 
@@ -169,7 +176,7 @@ Le petit-déjeuner couvre désormais deux usages distincts : trois recettes expr
 
 **La sur-réservation d'une portion stockée.** `portionsCompatiblesCreneau` ne filtre que sur `portionsRestantes > 0` : elle ne tient pas compte des portions déjà réservées sur un autre créneau. La même portion peut donc être proposée deux fois. Le compte reste exact, mais la section « Déjà prêt au frigo » ment sur ce qui est disponible. **Correctif en tête de la session 3b.**
 
-**La synchronisation entre appareils.** localStorage garde les données sur l'appareil : planifier sur l'ordinateur puis faire ses courses avec le téléphone ne fonctionne pas. En attendant Supabase, tout se fait depuis le téléphone. L'interface de persistance est asynchrone précisément pour que la bascule soit une substitution, pas une réécriture.
+**Aucun moyen de se déconnecter depuis l'app.** Constaté en session 3d. Un quatrième onglet contredirait `spec-navigation.md`, et l'en-tête du Planning est déjà chargé. Le bon endroit n'existe pas encore : il arrivera avec « Mes Placards » en 4a, ou avec l'écran de réglages des recettes par défaut, manquant depuis la 2ter. Deux besoins pour un même écran — autant le créer une fois.
 
 **La suggestion automatique d'une portion dont la DLC approche.** Devenue techniquement possible avec les dates réelles, mais l'interface reste à décider : où la proposer, comment l'écarter.
 
@@ -183,21 +190,25 @@ Le petit-déjeuner couvre désormais deux usages distincts : trois recettes expr
 
 ## 9. Feuille de route
 
+Détail complet et dépendances dans `00-Contexte/FEUILLE-DE-ROUTE.md`.
+
 | Session | Contenu | État |
 |---|---|---|
-| 1 | Échafaudage, bibliothèque, mode cuisine, planning lecture seule | fait |
-| 2 | Sélection, liste de courses, chaînage, navigation | fait |
+| 1 · 2 | Échafaudage, bibliothèque, mode cuisine, sélection, courses, chaînage | fait |
 | 2bis · 2ter · 2quater | Remise en état, portions restantes, créneaux corrigés | fait |
 | 3a | Dates réelles, chaîne d'exécution, repas de ce soir | fait |
-| **3b** | **Sur-réservation, Supabase, journal de dépenses** | à venir |
-| 4 | Placards, stock, validation du panier après courses | |
-| 5 | Scoring, rotation, suivi du gaspillage | |
+| 3b | Rituel du dimanche, sur-réservation | fait |
+| 3c · 3d | Supabase, journal de dépenses, connexion par mot de passe | fait |
+| **—** | **Vivre une vraie semaine** | **à faire** |
+| 4a · 4b | Placards, stock, retour de courses, contenants | à venir |
+| 5a · 5b | Scoring, rotation, gaspillage, remontée au niveau ingrédient | |
+| 6 | Palette d'événements — débloque le créneau `diner-a-deux` | |
 
-La session 3 a été coupée en deux : la 3a changeait le modèle de données (dates, réservation contre consommation), et poser un schéma Supabase par-dessus un modèle en cours de modification aurait obligé à le migrer deux fois.
+La session 3 a été coupée en quatre. La 3a changeait le modèle de données (dates, réservation contre consommation) : poser un schéma Supabase par-dessus un modèle en cours de modification aurait obligé à le migrer deux fois. La 3b a été avancée parce que l'usage a révélé une friction — un seul écran servait à décider le dimanche et à exécuter en semaine. La 3d a corrigé le lien magique, dont le coût réel n'est apparu qu'à la mise en service.
 
-**Le journal de dépenses est volontairement remonté** en 3b alors qu'il appartient logiquement au module stock. Sa valeur vient de l'accumulation : plus il démarre tôt, plus la comparaison avec les 204,82 € d'Uber Eats sera parlante. Photo du ticket, magasin, montant, saisis à la main. **Pas d'OCR** — décision prise.
+**Le journal de dépenses a été volontairement remonté** alors qu'il appartient logiquement au module stock. Sa valeur vient de l'accumulation : plus il démarre tôt, plus la comparaison avec les 204,82 € d'Uber Eats sera parlante. Photo du ticket, magasin, montant, saisis à la main. **Pas d'OCR** — décision prise.
 
-**L'ordre des dépendances**, plus important que les numéros : Supabase avant les photos, les placards avant le décrément d'ingrédients, et l'usage réel avant le scoring.
+**L'ordre des dépendances**, plus important que les numéros : les placards avant le décrément d'ingrédients, la palette d'événements avant le dîner à deux, et **l'usage réel avant le scoring**. Cette dernière dépendance est la seule qu'aucune session ne peut satisfaire.
 
 ---
 
@@ -219,8 +230,10 @@ Poste sous Windows, Bureau synchronisé par OneDrive. Éviter les opérations to
 
 ## 11. La prochaine chose à faire
 
-Vivre une vraie semaine avec l'app. Planifier un dimanche, faire les courses avec la liste, cuisiner, valider les recettes, déclarer les restes.
+**Vivre une vraie semaine avec l'app.** L'outil est complet et vérifié : planifier avec le rituel du dimanche, acheter avec la liste, cuisiner, valider, déclarer les restes. Rien ne manque plus techniquement.
 
-C'est la seule chose qui manque désormais, et rien ne peut la remplacer : le scoring de la phase 5 a besoin de données de goût réelles, la rotation a besoin d'un historique, et les conditionnements du référentiel ne se vérifieront qu'en magasin.
+C'est désormais la seule chose qui bloque, et aucune session ne peut la remplacer. Le scoring de la phase 5 a besoin de données de goût réelles. La rotation a besoin d'un historique. Les 165 conditionnements du référentiel ne se vérifieront qu'en magasin, le fichier ouvert — c'est le poste le plus rentable de toute la feuille de route, et ce n'est pas du code.
 
-Puis la session 3b.
+Trois décisions ont déjà été corrigées par l'usage plutôt que par la réflexion : le jour de batch déduit du mode, la sur-réservation des portions, et le lien magique. Il y en aura d'autres, et elles ne se verront qu'en vivant la semaine.
+
+Puis la session 4a.

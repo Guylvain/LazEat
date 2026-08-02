@@ -25,6 +25,12 @@ conditionnements du référentiel ne se vérifieront qu'en magasin.
 | 2quater | `collation-trajet` enfin généré, efforts enchaînés, fusion additive | manuel, complet |
 | 3a | **Dates réelles**, chaîne créneau → cuisine → bilan, ouverture sur aujourd'hui | manuel, complet |
 | 3b | **Rituel du dimanche**, correctif de sur-réservation | manuel, complet |
+| 3c | Correctifs du rituel, **Supabase**, journal de dépenses | manuel, complet |
+| 3d | Connexion par mot de passe à la place du lien magique | manuel, complet |
+
+**Supabase est en production depuis le 2 août 2026**, vérifié de bout en bout : écriture remontée dans Postgres, application utilisable en mode avion, écritures hors-ligne synchronisées au retour du réseau.
+
+Le lien magique livré en 3c a été abandonné dès la mise en service : le service d'e-mail intégré de Supabase est bridé à quelques envois par heure et documenté comme réservé aux tests. Pour une application personnelle installée en PWA, où l'on se connecte une fois par appareil, un mot de passe supprime la dépendance à un service d'envoi, la limite, et la configuration d'URL de redirection par environnement.
 
 Les sessions 1 et 2 n'avaient jamais été validées : aucune recette n'avait
 jamais été chargée dans le build de production. Trois sessions de remise en
@@ -34,7 +40,11 @@ jamais été chargée dans le build de production. Trois sessions de remise en
 
 ## Ce qui reste
 
-### Session 3c — Correctifs du rituel, Supabase, dépenses
+> **Sessions 3c et 3d livrées le 1er et 2 août 2026.** Le détail ci-dessous
+> est conservé pour mémoire ; il décrit ce qui a été fait, plus ce qui reste
+> à faire. La prochaine session est la **4a**.
+
+### Session 3c — Correctifs du rituel, Supabase, dépenses ✔
 
 **Trois correctifs visuels du rituel**, trouvés à l'usage :
 
