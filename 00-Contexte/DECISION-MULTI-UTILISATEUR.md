@@ -27,7 +27,24 @@ La nuance porte toute la décision.
 - Aucune interface de compte, d'inscription ou de connexion multiple.
 - Aucun changement d'utilisateur.
 - Aucun partage, aucun planning commun.
-- **Aucune méthode supplémentaire sur l'interface `Persistance`.**
+- **Aucune méthode supplémentaire sur l'interface `Persistance`** *au titre du
+  multi-utilisateur*.
+
+> **Précision ajoutée le 2 août 2026.** Cette dernière ligne visait le
+> périmètre de la session 3c : ne pas introduire de méthode liée aux comptes,
+> au partage ou au changement d'utilisateur. Le rapport de la 3c l'a lue comme
+> une interdiction universelle, ce qu'elle n'est pas.
+>
+> Une donnée qui doit vivre hors-ligne **doit** passer par `Persistance` : c'est
+> le seul chemin qui écrit dans le cache local avant le réseau. La session 4a a
+> donc légitimement ajouté `lirePlacard`/`ecrirePlacard`, le décrément de stock
+> se déclenchant à 22h30 au retour d'entraînement — le moment que `CLAUDE.md`
+> décrit comme le problème central du projet.
+>
+> Le critère n'est pas « ajouter une méthode est interdit », c'est : **cette
+> donnée doit-elle survivre à une absence de réseau ?** Le journal de dépenses
+> répond non — envoyer une photo suppose le réseau de toute façon. Le stock
+> répond oui.
 
 ---
 
